@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/kunpheaktralim-cloud/Web-Design-/issues"
   },
-  "homepage": "https://github.com/kunpheaktralim-cloud/Web-Design-#readme"
+  "homepage": "https://github.com/kunpheaktralim-cloud/Web-Design-#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.2.2"
+  }
 }
