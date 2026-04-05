@@ -1,12 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Restaurant Auth</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("https://images.unsplash.com/photo-1504674900247-0877df9cc836") no-repeat center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .box {
+    background: rgba(0,0,0,0.75);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 320px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: orange;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: darkorange;
+  }
+
+  .toggle {
+    margin-top: 15px;
+    cursor: pointer;
+    color: #ffcc70;
+  }
+
+  #msg {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+</style>
 </head>
+
 <body>
-    
+
+<div class="box">
+
+  <!-- REGISTER -->
+  <div id="registerBox">
+    <h2>🍽️ Create Account</h2>
+    <input type="text" id="regUser" placeholder="Username">
+    <input type="password" id="regPass" placeholder="Password">
+    <button onclick="register()">Register</button>
+    <div class="toggle" onclick="showLogin()">Already have account? Login</div>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="loginBox" style="display:none;">
+    <h2>🍔 Welcome Back</h2>
+    <input type="text" id="logUser" placeholder="Username">
+    <input type="password" id="logPass" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <div class="toggle" onclick="showRegister()">Create new account</div>
+  </div>
+
+  <p id="msg"></p>
+
+</div>
+
+<script>
+// Switch UI
+function showLogin() {
+  document.getElementById("registerBox").style.display = "none";
+  document.getElementById("loginBox").style.display = "block";
+}
+
+function showRegister() {
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("registerBox").style.display = "block";
+}
+
+// Register
+function register() {
+  let username = document.getElementById("regUser").value;
+  let password = document.getElementById("regPass").value;
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  if (users.find(u => u.username === username)) {
+    return showMsg("User already exists ❌");
+  }
+
+  users.push({ username, password });
+  localStorage.setItem("users", JSON.stringify(users));
+
+  showMsg("Registered successfully ✅");
+}
+
+// Login
+function login() {
+  let username = document.getElementById("logUser").value;
+  let password = document.getElementById("logPass").value;
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  let user = users.find(
+    u => u.username === username && u.password === password
+  );
+
+  if (user) {
+    showMsg("Welcome to our restaurant 🍽️");
+  } else {
+    showMsg("Wrong username or password ❌");
+  }
+}
+
+// Message
+function showMsg(text) {
+  document.getElementById("msg").innerText = text;
+}
+</script>
+
 </body>
 </html>
