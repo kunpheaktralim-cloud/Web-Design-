@@ -9,80 +9,82 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-   <body class="min-h-screen bg-gradient-to-r from-green-400 to-green-800">
+  <body class="min-h-screen flex flex-col bg-gradient-to-r from-green-400 to-green-800">
+    <!-- Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <a href="index.html" class="flex items-center">
+          <img
+            src="logo.png"
+            alt="Khmer Taste Logo"
+            class="h-14 md:h-16 w-auto object-contain"
+          />
+        </a>
 
-   <!-- Navbar -->
-<header class="bg-white shadow-md sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+        <nav class="hidden md:flex items-center space-x-8 font-medium">
+          <a href="index.html" class="text-green-700 hover:text-orange-500 transition">Home</a>
+          <a href="Menu.html" class="hover:text-orange-500 transition">Menu</a>
+          <a href="Contact.html" class="hover:text-orange-500 transition">Contact</a>
+          <a href="Event.html" class="hover:text-orange-500 transition">Event</a>
+          <a
+            href="Login.html"
+            class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition"
+          >
+            Login
+          </a>
+        </nav>
+      </div>
+    </header>
 
-    <!-- LOGO LEFT -->
-    <a href="index.html" class="flex items-center">
-      <img src="logo.png" alt="Khmer Taste Logo"
-           class="h-14 md:h-16 w-auto object-contain">
-    </a>
+    <!-- Center Content -->
+    <main class="flex-1 flex items-center justify-center px-4 py-8">
+      <div class="bg-white p-8 rounded-2xl shadow-xl w-80">
+        <h1 id="title" class="text-2xl font-bold text-center text-blue-400 mb-6">
+          Login
+        </h1>
 
-    <!-- NAV RIGHT -->
-    <nav class="hidden md:flex items-center space-x-8 font-medium">
-      <a href="index.html" class="text-green-700 hover:text-orange-500 transition">Home</a>
-      <a href="Menu.html" class="hover:text-orange-500 transition">Menu</a>
-      <a href="Contact.html" class="hover:text-orange-500 transition">Contact</a>
-      <a href="Event.html" class="hover:text-orange-500 transition">Event</a>
-      <a href="Login.html"
-         class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
-        Login
-      </a>
-    </nav>
+        <!-- Error -->
+        <p id="msg" class="text-red-500 text-sm text-center hidden"></p>
 
-  </div>
-</header>
+        <!-- Username -->
+        <input
+          id="username"
+          type="text"
+          placeholder="Username"
+          class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
+        />
 
+        <!-- Password -->
+        <input
+          id="password"
+          type="password"
+          placeholder="Password"
+          class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
+        />
 
-    <div class="bg-white p-8 rounded-2xl shadow-xl w-80">
-      <h1 id="title" class="text-2xl font-bold text-center text-blue-400 mb-6">
-        Login
-      </h1>
+        <!-- Confirm Password -->
+        <input
+          id="confirmPassword"
+          type="password"
+          placeholder="Confirm Password"
+          class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400 hidden"
+        />
 
-      <!-- Error -->
-      <p id="msg" class="text-red-500 text-sm text-center hidden"></p>
-
-      <!-- Username -->
-      <input
-        id="username"
-        type="text"
-        placeholder="Username"
-        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
-      />
-
-      <!-- Password -->
-      <input
-        id="password"
-        type="password"
-        placeholder="Password"
-        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
-      />
-
-      <!-- Confirm Password (hidden by default) -->
-      <input
-        id="confirmPassword"
-        type="password"
-        placeholder="Confirm Password"
-        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400 hidden"
-      />
-
-      <!-- Button -->
-      <button 
-        onclick="handleAction()"
-        class="w-full bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-300"
-      ><a href="color.html">submit</a></button>
-
-      <!-- Switch -->
-      <p class="text-sm text-center mt-4">
-        <span id="switchText">Don't have an account?</span>
-        <a href="#" onclick="toggleMode()" class="text-blue-400 font-bold"
-          >Register</a
+        <!-- Button -->
+        <button
+          onclick="handleAction()"
+          class="w-full bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-300"
         >
-      </p>
-    </div>
+          <a href="color.html">submit</a>
+        </button>
+
+        <!-- Switch -->
+        <p class="text-sm text-center mt-4">
+          <span id="switchText">Don't have an account?</span>
+          <a href="#" onclick="toggleMode()" class="text-blue-400 font-bold">Register</a>
+        </p>
+      </div>
+    </main>
 
     <script>
       let isLogin = true;
@@ -132,7 +134,6 @@
           // }
         } else {
           // REGISTER
-
           if (confirmPassword === "") {
             showMsg("Please confirm your password!");
             return;
@@ -165,41 +166,37 @@
       }
     </script>
 
-      <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300 py-8">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-      
-      
-      <div>
-        <img src="logo.png" alt="Khmer Taste Logo" class="h-10 mb-3">
-        <p class="text-sm">
-          Authentic Cambodian cuisine with fresh ingredients and warm hospitality.
-        </p>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8 mt-auto">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+        <div>
+          <img src="logo.png" alt="Khmer Taste Logo" class="h-10 mb-3" />
+          <p class="text-sm">
+            Authentic Cambodian cuisine with fresh ingredients and warm hospitality.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-3">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-white">Home</a></li>
+            <li><a href="Menu.html" class="hover:text-white">Menu</a></li>
+            <li><a href="Contact.html" class="hover:text-white">Contact</a></li>
+            <li><a href="Login.html" class="hover:text-white">Login</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-3">Contact</h4>
+          <p class="text-sm">Phnom Penh, Cambodia</p>
+          <p class="text-sm">+855 12 345 678</p>
+          <p class="text-sm">info@khmertaste.com</p>
+        </div>
       </div>
 
-      <div>
-        <h4 class="text-white font-semibold mb-3">Quick Links</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="index.html" class="hover:text-white">Home</a></li>
-          <li><a href="Menu.html" class="hover:text-white">Menu</a></li>
-          <li><a href="Contact.html" class="hover:text-white">Contact</a></li>
-          <li><a href="Login.html" class="hover:text-white">Login</a></li>
-        </ul>
+      <div class="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-400">
+        © 2026 Khmer Taste Restaurant. All rights reserved.
       </div>
-
-      <div>
-        <h4 class="text-white font-semibold mb-3">Contact</h4>
-        <p class="text-sm">Phnom Penh, Cambodia</p>
-        <p class="text-sm">+855 12 345 678</p>
-        <p class="text-sm">info@khmertaste.com</p>
-      </div>
-    </div>
-
-    <div class="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-400">
-      © 2026 Khmer Taste Restaurant. All rights reserved.
-    </div>
-  </footer>
-
-
+    </footer>
   </body>
 </html>
