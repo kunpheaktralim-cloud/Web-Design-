@@ -15,6 +15,7 @@
     --color-amber-700: oklch(55.5% 0.163 48.998);
     --color-amber-800: oklch(47.3% 0.137 46.201);
     --color-yellow-500: oklch(79.5% 0.184 86.047);
+    --color-green-700: oklch(52.7% 0.154 150.069);
     --color-pink-400: oklch(71.8% 0.202 349.761);
     --color-pink-500: oklch(65.6% 0.241 354.308);
     --color-rose-100: oklch(94.1% 0.03 12.58);
@@ -256,6 +257,9 @@
   .grid {
     display: grid;
   }
+  .table {
+    display: table;
+  }
   .h-5 {
     height: calc(var(--spacing) * 5);
   }
@@ -298,8 +302,14 @@
   .max-w-6xl {
     max-width: var(--container-6xl);
   }
+  .border-collapse {
+    border-collapse: collapse;
+  }
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+  }
+  .resize {
+    resize: both;
   }
   .grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -403,11 +413,53 @@
   .border-white {
     border-color: var(--color-white);
   }
+  .bg-\[\#000000\] {
+    background-color: #000000;
+  }
+  .bg-\[\#1d241c\] {
+    background-color: #1d241c;
+  }
   .bg-\[\#1f1a17\] {
     background-color: #1f1a17;
   }
+  .bg-\[\#3b3b3b\] {
+    background-color: #3b3b3b;
+  }
+  .bg-\[\#3d2512\] {
+    background-color: #3d2512;
+  }
+  .bg-\[\#4fc73f\] {
+    background-color: #4fc73f;
+  }
+  .bg-\[\#41a533\] {
+    background-color: #41a533;
+  }
+  .bg-\[\#53be44\] {
+    background-color: #53be44;
+  }
+  .bg-\[\#61a359\] {
+    background-color: #61a359;
+  }
+  .bg-\[\#171f18\] {
+    background-color: #171f18;
+  }
+  .bg-\[\#181f17\] {
+    background-color: #181f17;
+  }
+  .bg-\[\#241f1c\] {
+    background-color: #241f1c;
+  }
+  .bg-\[\#488d42\] {
+    background-color: #488d42;
+  }
+  .bg-\[\#496846\] {
+    background-color: #496846;
+  }
   .bg-amber-700 {
     background-color: var(--color-amber-700);
+  }
+  .bg-black {
+    background-color: var(--color-black);
   }
   .bg-black\/50 {
     background-color: color-mix(in srgb, #000 50%, transparent);
@@ -417,6 +469,9 @@
   }
   .bg-pink-500 {
     background-color: var(--color-pink-500);
+  }
+  .bg-rose-100 {
+    background-color: var(--color-rose-100);
   }
   .bg-rose-100\/30 {
     background-color: color-mix(in srgb, oklch(94.1% 0.03 12.58) 30%, transparent);
@@ -583,6 +638,9 @@
   .text-gray-800 {
     color: var(--color-gray-800);
   }
+  .text-green-700 {
+    color: var(--color-green-700);
+  }
   .text-pink-500 {
     color: var(--color-pink-500);
   }
@@ -604,6 +662,9 @@
   .uppercase {
     text-transform: uppercase;
   }
+  .underline {
+    text-decoration-line: underline;
+  }
   .shadow-lg {
     --tw-shadow: 0 10px 15px -3px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 4px 6px -4px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
@@ -619,6 +680,10 @@
   .shadow-xl {
     --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
   }
   .transition {
     transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events;
@@ -968,6 +1033,11 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-duration {
   syntax: "*";
   inherits: false;
@@ -1024,6 +1094,7 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-outline-style: solid;
       --tw-duration: initial;
       --tw-scale-x: 1;
       --tw-scale-y: 1;
