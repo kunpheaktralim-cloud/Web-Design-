@@ -956,6 +956,85 @@
           </div>
   </section>
 
+  <!-- Footer -->
+  <footer class="bg-gray-900 dark:bg-black text-gray-300 py-8">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+      <div>
+        <img src="logo.png" alt="Khmer Taste Logo" class="h-10 mb-3">
+        <p class="text-sm">
+          Authentic Cambodian cuisine with fresh ingredients and warm hospitality.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold mb-3">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="Menu.html" class="hover:text-white">Menu</a></li>
+          <li><a href="Contact.html" class="hover:text-white">Contact</a></li>
+          <li><a href="Login.html" class="hover:text-white">Login</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold mb-3">Contact</h4>
+        <p class="text-sm">Phnom Penh, Cambodia</p>
+        <p class="text-sm">+855 12 345 678</p>
+        <p class="text-sm">info@khmertaste.com</p>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-400">
+      © 2026 Khmer Taste Restaurant. All rights reserved.
+    </div>
+  </footer>
+
+  <footer>
+  const themeMenu = document.getElementById("themeMenu");
+  const themeIcon = document.getElementById("themeIcon");
+  const themeText = document.getElementById("themeText");
+  const themeDropdown = document.getElementById("themeDropdown");
+
+  function toggleThemeMenu() {
+    themeMenu.classList.toggle("hidden");
+  }
+
+  function applyTheme(theme) {
+    const html = document.documentElement;
+
+    if (theme === "dark") {
+      html.classList.add("dark");
+      themeIcon.setAttribute("data-lucide", "moon");
+      themeText.textContent = "Dark";
+    } else {
+      html.classList.remove("dark");
+      themeIcon.setAttribute("data-lucide", "sun");
+      themeText.textContent = "Light";
+    }
+
+    lucide.createIcons();
+  }
+
+  function setTheme(theme) {
+    localStorage.setItem("theme", theme);
+    applyTheme(theme);
+    themeMenu.classList.add("hidden");
+  }
+
+  // Load saved theme (default = light)
+  const savedTheme = localStorage.getItem("theme") || "light";
+  applyTheme(savedTheme);
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function (e) {
+    if (!themeDropdown.contains(e.target)) {
+      themeMenu.classList.add("hidden");
+    }
+  });
+
+  lucide.createIcons();
+</footer>
+
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
