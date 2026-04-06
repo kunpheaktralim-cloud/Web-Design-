@@ -31,88 +31,9 @@
         <a href="Login.html" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
           Login
         </a>
+      </nav>
 
-        <button type="button" onclick="toggleThemeMenu()"
-          class="flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-100 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800">
-          <span id="themeIconWrapper">
-            <i data-lucide="sun" class="w-4 h-4"></i>
-          </span>
-          <span id="themeText">Light</span>
-          <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500 dark:text-gray-300"></i>
-        </button>
-
-        <div id="themeMenu"
-          class="hidden absolute right-0 top-full mt-2 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 py-2 shadow-xl z-50">
-          <button type="button" onclick="setTheme('light')"
-            class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800">
-            <i data-lucide="sun" class="w-4 h-4"></i>
-            <span>Light</span>
-          </button>
-
-          <button type="button" onclick="setTheme('dark')"
-            class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800">
-            <i data-lucide="moon" class="w-4 h-4"></i>
-            <span>Dark</span>
-          </button>
-        </div>
-    </div>
-
-    <a href="Login.html" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
-      Login
-    </a>
-    </nav>
-
-    <!-- Mobile Menu Button -->
-    <button type="button" onclick="openMobileMenu()"
-      class="md:hidden flex items-center justify-center w-14 h-14 rounded-none bg-[#1c1f24] text-white">
-      <i data-lucide="menu" class="w-7 h-7"></i>
-    </button>
-    </div>
-  </header>
-
-  <!-- Mobile Sidebar Overlay -->
-  <div id="mobileOverlay" class="fixed inset-0 bg-black/40 z-[60] hidden md:hidden" onclick="closeMobileMenu()"></div>
-
-  <!-- Mobile Sidebar -->
-  <aside id="mobileSidebar"
-    class="fixed top-0 right-0 h-full w-72 bg-white dark:bg-gray-900 shadow-2xl z-[70] translate-x-full transition-transform duration-300 md:hidden">
-    <div class="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-800">
-      <img src="logo.png" alt="Khmer Taste Logo" class="h-12 w-auto object-contain">
-      <button type="button" onclick="closeMobileMenu()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
-        <i data-lucide="x" class="w-6 h-6"></i>
-      </button>
-    </div>
-
-    <div class="p-5 space-y-3 font-medium">
-      <a href="index.html"
-        class="block rounded-lg px-3 py-3 text-green-700 dark:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800">
-        Home
-      </a>
-      <a href="Menu.html" class="block rounded-lg px-3 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
-        Menu
-      </a>
-      <a href="Contact.html" class="block rounded-lg px-3 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
-        Contact
-      </a>
-      <a href="Event.html" class="block rounded-lg px-3 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
-        Event
-      </a>
-
-      <div class="pt-3 border-t border-gray-200 dark:border-gray-800">
-        <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Theme</p>
-        <div class="grid grid-cols-2 gap-2">
-          <button onclick="setTheme('light')"
-            class="flex items-center justify-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-3 hover:bg-gray-50 dark:hover:bg-gray-800">
-            <i data-lucide="sun" class="w-4 h-4"></i>
-            Light
-          </button>
-          <button onclick="setTheme('dark')"
-            class="flex items-center justify-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-3 hover:bg-gray-50 dark:hover:bg-gray-800">
-            <i data-lucide="moon" class="w-4 h-4"></i>
-            Dark
-          </button>
-        </div>
-      </div>
+        
 
 
       <section>
