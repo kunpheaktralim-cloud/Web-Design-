@@ -1,86 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Khmer Restaurant</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./src/output.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khmer Taste Restaurant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#2E7D32",
+            accent: "#FF7A00",
+            soft: "#FFF8F1"
+          }
+        }
+      }
+    }
+  </script>
 </head>
-
 <body class="bg-white text-gray-800">
 
-  <!-- NAVBAR -->
-  <header class="bg-primary text-white">
-    <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
-      <h1 class="text-xl font-bold">Khmer Taste</h1>
-      <nav class="space-x-6">
-        <a href="#" class="hover:text-orange-300">Home</a>
-        <a href="#" class="hover:text-orange-300">Menu</a>
-        <a href="contact.html" class="hover:text-orange-300">Contact</a>
+  <!-- Navbar -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div>
+        <h1 class="text-2xl font-bold text-primary">Khmer Taste</h1>
+        <p class="text-sm text-gray-500">Authentic Cambodian Cuisine</p>
+      </div>
+
+      <nav class="hidden md:flex items-center space-x-8 font-medium">
+        <a href="index.html" class="text-primary hover:text-accent transition">Home</a>
+        <a href="Menu.html" class="hover:text-accent transition">Menu</a>
+        <a href="Contact.html" class="hover:text-accent transition">Contact</a>
+        <a href="Login.html" class="bg-accent text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
+          Login
+        </a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="bg-primary text-white text-center py-20">
-    <h2 class="text-4xl font-bold mb-4">Authentic Khmer Cuisine</h2>
-    <p class="mb-6">Fresh • Local • Delicious</p>
-    <a href="#menu" class="bg-accent px-6 py-3 rounded-lg font-semibold hover:opacity-90">
-      View Menu
-    </a>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-primary to-green-600 text-white">
+    <div class="max-w-7xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <p class="uppercase tracking-widest text-orange-200 font-semibold mb-3">Welcome to Khmer Taste</p>
+        <h2 class="text-4xl md:text-5xl font-bold leading-tight mb-5">
+          Experience the Rich Flavor of Khmer Food
+        </h2>
+        <p class="text-lg text-green-50 mb-8">
+          Discover fresh ingredients, traditional recipes, and a warm Cambodian dining experience for family and friends.
+        </p>
+
+        <div class="flex flex-wrap gap-4">
+          <a href="Menu.html" class="bg-accent px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
+            View Menu
+          </a>
+          <a href="Contact.html" class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+            Contact Us
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white/10 rounded-2xl p-8 backdrop-blur-sm shadow-xl">
+        <div class="bg-white rounded-2xl p-6 text-gray-800 shadow-lg">
+          <h3 class="text-2xl font-bold text-primary mb-4">Why Choose Us?</h3>
+          <ul class="space-y-3 text-gray-600">
+            <li>• Traditional Khmer dishes with authentic taste</li>
+            <li>• Fresh, local ingredients every day</li>
+            <li>• Comfortable dining for families and events</li>
+            <li>• Friendly service and welcoming atmosphere</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="max-w-6xl mx-auto py-16 px-4 text-center">
-    <h2 class="text-3xl font-bold text-primary mb-4">About Us</h2>
-    <p class="text-gray-600">
-      We serve traditional Khmer dishes made with fresh ingredients and authentic recipes.
-      Experience the true taste of Cambodia in a warm and welcoming atmosphere.
-    </p>
+  <!-- About -->
+  <section class="bg-soft py-16">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">About Us</h2>
+      <p class="text-gray-600 text-lg leading-relaxed max-w-3xl mx-auto">
+        Khmer Taste Restaurant brings the heart of Cambodia to your table. We proudly serve classic Khmer dishes prepared with care, combining traditional flavor with a clean and modern dining atmosphere.
+      </p>
+    </div>
   </section>
 
-  <!-- MENU PREVIEW -->
-  <section id="menu" class="bg-gray-100 py-16">
-    <div class="max-w-6xl mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center text-primary mb-10">Popular Dishes</h2>
+  <!-- Featured Dishes -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-3">Popular Dishes</h2>
+        <p class="text-gray-600">Some of our customer favorites you should try</p>
+      </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
-        
-        <!-- ITEM -->
-        <div class="bg-white rounded-xl shadow p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">Amok Fish</h3>
-          <p class="text-gray-600 mb-3">Traditional Khmer coconut curry</p>
-          <span class="text-accent font-bold">$5.00</span>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition p-6 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center text-2xl">🍛</div>
+          <h3 class="text-2xl font-semibold mb-2">Amok Fish</h3>
+          <p class="text-gray-600 mb-4">Traditional Khmer fish curry cooked with coconut milk and spices.</p>
+          <span class="text-accent font-bold text-lg">$5.00</span>
         </div>
 
-        <div class="bg-white rounded-xl shadow p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">Beef Lok Lak</h3>
-          <p class="text-gray-600 mb-3">Stir-fried beef with pepper sauce</p>
-          <span class="text-accent font-bold">$6.50</span>
+        <div class="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition p-6 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-orange-100 flex items-center justify-center text-2xl">🥩</div>
+          <h3 class="text-2xl font-semibold mb-2">Beef Lok Lak</h3>
+          <p class="text-gray-600 mb-4">Tender stir-fried beef served with Khmer pepper lime sauce.</p>
+          <span class="text-accent font-bold text-lg">$6.50</span>
         </div>
 
-        <div class="bg-white rounded-xl shadow p-6 text-center">
-          <h3 class="text-xl font-semibold mb-2">Khmer Fried Rice</h3>
-          <p class="text-gray-600 mb-3">Rice with vegetables and meat</p>
-          <span class="text-accent font-bold">$4.00</span>
+        <div class="bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition p-6 text-center">
+          <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center text-2xl">🍚</div>
+          <h3 class="text-2xl font-semibold mb-2">Khmer Fried Rice</h3>
+          <p class="text-gray-600 mb-4">A flavorful fried rice dish with vegetables, egg, and your choice of meat.</p>
+          <span class="text-accent font-bold text-lg">$4.00</span>
         </div>
+      </div>
 
+      <div class="text-center mt-10">
+        <a href="Menu.html" class="inline-block bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+          Explore Full Menu
+        </a>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="text-center py-16">
-    <h2 class="text-3xl font-bold text-primary mb-4">Visit Us Today</h2>
-    <p class="mb-6 text-gray-600">Enjoy authentic Khmer flavors with your family and friends.</p>
-    <a href="contact.html" class="bg-accent text-white px-6 py-3 rounded-lg hover:opacity-90">
-      Contact Us
-    </a>
+  <section class="bg-primary text-white py-16">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Visit Us Today</h2>
+      <p class="text-lg text-green-50 mb-8">
+        Enjoy authentic Khmer flavors in a welcoming and modern restaurant setting.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="Contact.html" class="bg-accent px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
+          Contact Us
+        </a>
+        <a href="Login.html" class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+          Login
+        </a>
+      </div>
+    </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer class="bg-primary text-white text-center p-4">
-    <p>© 2026 Khmer Taste Restaurant</p>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-8">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-white text-xl font-bold mb-3">Khmer Taste</h3>
+        <p class="text-sm">
+          Authentic Cambodian cuisine with fresh ingredients, traditional recipes, and warm hospitality.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold mb-3">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="index.html" class="hover:text-white">Home</a></li>
+          <li><a href="Menu.html" class="hover:text-white">Menu</a></li>
+          <li><a href="Contact.html" class="hover:text-white">Contact</a></li>
+          <li><a href="Login.html" class="hover:text-white">Login</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold mb-3">Contact</h4>
+        <p class="text-sm">Phnom Penh, Cambodia</p>
+        <p class="text-sm">+855 12 345 678</p>
+        <p class="text-sm">info@khmertaste.com</p>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-400">
+      © 2026 Khmer Taste Restaurant. All rights reserved.
+    </div>
   </footer>
 
 </body>
