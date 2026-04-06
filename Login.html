@@ -6,7 +6,7 @@
     <title>Login System</title>
 
     <!-- Tailwind -->
-    <link href="./src/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body
@@ -35,13 +35,20 @@
         placeholder="Password"
         class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-pink-400"
       />
-      
+
+      <!-- Confirm Password (hidden by default) -->
+      <input
+        id="confirmPassword"
+        type="password"
+        placeholder="Confirm Password"
+        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-pink-400 hidden"
+      />
+
       <!-- Button -->
       <button 
         onclick="handleAction()"
         class="w-full bg-pink-500 text-white p-3 rounded-lg hover:bg-red-500"
-      ><a href="Menu.html">Submit</a>
-      </button>
+      ><a href="Menu.html">submit</a></button>
 
       <!-- Switch -->
       <p class="text-sm text-center mt-4">
