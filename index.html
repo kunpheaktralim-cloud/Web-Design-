@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Khmer Taste Restaurant</title>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -14,6 +15,9 @@
             accent: "#FF7A00",
             soft: "#FFF8F1"
           }
+        
+            darkMode: 'class'
+        
         }
       }
     }
@@ -41,34 +45,40 @@
          class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
         Login
       </a>
-   <div class="relative">
-  <button onclick="toggleThemeMenu()" 
-    class="flex items-center gap-2 px-3 py-2 rounded-lg border bg-white hover:bg-gray-100 text-sm">
-    <span id="themeIcon">💻</span>
+      <div class="relative" id="themeDropdown">
+  <button onclick="toggleThemeMenu()"
+    class="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
+
+    <i id="themeIcon" data-lucide="monitor" class="w-4 h-4"></i>
     <span id="themeText">System</span>
+
+    <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500"></i>
   </button>
 
-  <div id="themeMenu" 
-    class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border text-sm overflow-hidden">
+  <!-- Dropdown -->
+  <div id="themeMenu"
+    class="hidden absolute right-0 mt-2 w-44 rounded-xl border border-gray-200 bg-white py-2 shadow-xl">
 
-    <button onclick="setTheme('light')" 
-      class="w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100">
-      ☀️ Light
+    <button onclick="setTheme('light')"
+      class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+      <i data-lucide="sun" class="w-4 h-4"></i>
+      Light
     </button>
 
-    <button onclick="setTheme('dark')" 
-      class="w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100">
-      🌙 Dark
+    <button onclick="setTheme('dark')"
+      class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+      <i data-lucide="moon" class="w-4 h-4"></i>
+      Dark
     </button>
 
-    <button onclick="setTheme('system')" 
-      class="w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100">
-      💻 System
+    <button onclick="setTheme('system')"
+      class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+      <i data-lucide="monitor" class="w-4 h-4"></i>
+      System
     </button>
 
   </div>
 </div>
-
     </nav>
 
   </div>
@@ -271,6 +281,69 @@
       © 2026 Khmer Taste Restaurant. All rights reserved.
     </div>
   </footer>
+
+  <script>
+  const themeMenu = document.getElementById("themeMenu");
+  const themeIcon = document.getElementById("themeIcon");
+  const themeText = document.getElementById("themeText");
+  const themeDropdown = document.getElementById("themeDropdown");
+
+  function toggleThemeMenu() {
+    themeMenu.classList.toggle("hidden");
+  }
+
+  function applyTheme(theme) {
+    const html = document.documentElement;
+
+    if (theme === "dark") {
+      html.classList.add("dark");
+      themeIcon.setAttribute("data-lucide", "moon");
+      themeText.textContent = "Dark";
+    } else if (theme === "light") {
+      html.classList.remove("dark");
+      themeIcon.setAttribute("data-lucide", "sun");
+      themeText.textContent = "Light";
+    } else {
+      themeIcon.setAttribute("data-lucide", "monitor");
+      themeText.textContent = "System";
+
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        html.classList.add("dark");
+      } else {
+        html.classList.remove("dark");
+      }
+    }
+
+    lucide.createIcons(); // refresh icons
+  }
+
+  function setTheme(theme) {
+    localStorage.setItem("theme", theme);
+    applyTheme(theme);
+    themeMenu.classList.add("hidden");
+  }
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem("theme") || "system";
+  applyTheme(savedTheme);
+
+  // System change listener
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if ((localStorage.getItem("theme") || "system") === "system") {
+      applyTheme("system");
+    }
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", function (e) {
+    if (!themeDropdown.contains(e.target)) {
+      themeMenu.classList.add("hidden");
+    }
+  });
+
+  // Init icons
+  lucide.createIcons();
+</script>
 
 </body>
 </html>
