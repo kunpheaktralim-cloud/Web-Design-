@@ -1,58 +1,145 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login System</title>
+
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="h-screen flex items-center justify-center bg-gradient-to-r from-pink-500 to-red-500">
+  </head>
 
+  <body
+    class="h-screen flex items-center justify-center bg-gradient-to-r from-pink-500 to-red-500"
+  >
     <div class="bg-white p-8 rounded-2xl shadow-xl w-80">
-        <form>
-            <h1 class="text-2xl font-bold text-center text-pink-500 mb-6">
-                Login
-            </h1>
+      <h1 id="title" class="text-2xl font-bold text-center text-pink-500 mb-6">
+        Login
+      </h1>
 
-            <!-- Username -->
-            <div class="mb-4">
-                <input type="text" placeholder="Username"
-                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
-                    required>
-            </div>
+      <!-- Error -->
+      <p id="msg" class="text-red-500 text-sm text-center hidden"></p>
 
-            <!-- Password -->
-            <div class="mb-4">
-                <input type="password" placeholder="Password"
-                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400"
-                    required>
-            </div>
+      <!-- Username -->
+      <input
+        id="username"
+        type="text"
+        placeholder="Username"
+        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-pink-400"
+      />
 
-            <!-- Options -->
-            <div class="flex justify-between items-center text-sm mb-4">
-                <label class="flex items-center gap-1">
-                    <input type="checkbox"> Remember me
-                </label>
-                <a href="#" class="text-pink-500 hover:underline">
-                    Forgot password?
-                </a>
-            </div>
+      <!-- Password -->
+      <input
+        id="password"
+        type="password"
+        placeholder="Password"
+        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-pink-400"
+      />
 
-            <!-- Button -->
-            <button type="submit"
-                class="w-full bg-pink-500 text-white p-3 rounded-lg hover:bg-red-500 transition">
-                Login
-            </button>
+      <!-- Confirm Password (hidden by default) -->
+      <input
+        id="confirmPassword"
+        type="password"
+        placeholder="Confirm Password"
+        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-pink-400 hidden"
+      />
 
-            <!-- Register -->
-            <p class="text-sm text-center mt-4">
-                Don't have an account?
-                <a href="#" class="text-pink-500 font-semibold hover:underline">
-                    Register
-                </a>
-            </p>
-        </form>
+      <!-- Button -->
+      <button 
+        onclick="handleAction()"
+        class="w-full bg-pink-500 text-white p-3 rounded-lg hover:bg-red-500"
+      ><a href="color.html">submit</a>
+        Submit
+      </button>
+
+      <!-- Switch -->
+      <p class="text-sm text-center mt-4">
+        <span id="switchText">Don't have an account?</span>
+        <a href="#" onclick="toggleMode()" class="text-pink-500 font-bold"
+          >Register</a
+        >
+      </p>
     </div>
 
-</body>
+    <script>
+      let isLogin = true;
+
+      function toggleMode() {
+        isLogin = !isLogin;
+
+        document.getElementById("title").textContent = isLogin
+          ? "Login"
+          : "Register";
+        document.getElementById("switchText").textContent = isLogin
+          ? "Don't have an account?"
+          : "Already have an account?";
+
+        // Show/hide confirm password
+        document.getElementById("confirmPassword").classList.toggle("hidden");
+      }
+
+      function handleAction() {
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const confirmPassword = document
+          .getElementById("confirmPassword")
+          .value.trim();
+        const msg = document.getElementById("msg");
+
+        msg.classList.add("hidden");
+
+        if (username === "" || password === "") {
+          showMsg("Please fill all fields!");
+          return;
+        }
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        if (isLogin) {
+          // LOGIN
+          const user = users.find(
+            (u) => u.username === username && u.password === password,
+          );
+
+          // if(user) {
+          //     alert("✅ Login successful!");
+          //     window.location.href = "menu.html";
+          // } else {
+          //     showMsg("❌ Invalid username or password!");
+          // }
+        } else {
+          // REGISTER
+
+          if (confirmPassword === "") {
+            showMsg("Please confirm your password!");
+            return;
+          }
+
+          if (password !== confirmPassword) {
+            showMsg("❌ Passwords do not match!");
+            return;
+          }
+
+          const exists = users.find((u) => u.username === username);
+
+          if (exists) {
+            showMsg("⚠ Username already exists!");
+            return;
+          }
+
+          users.push({ username, password });
+          localStorage.setItem("users", JSON.stringify(users));
+
+          alert("✅ Register successful! Now login.");
+          toggleMode();
+        }
+      }
+
+      function showMsg(text) {
+        const msg = document.getElementById("msg");
+        msg.textContent = text;
+        msg.classList.remove("hidden");
+      }
+    </script>
+  </body>
 </html>
