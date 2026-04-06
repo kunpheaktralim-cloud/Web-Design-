@@ -41,12 +41,17 @@
          class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
         Login
       </a>
-      <select id="themeSelect"
-        class="px-2 py-2 rounded-lg border text-sm bg-white dark:bg-gray-800 dark:text-white">
-        <option value="light">☀️</option>
-        <option value="dark">🌙</option>
-        <option value="system">💻</option>
-      </select>
+<div class="flex items-center rounded-lg overflow-hidden border border-gray-300 bg-white shadow-sm">
+  <button onclick="setTheme('light')" class="px-3 py-2 hover:bg-gray-100" title="Light mode">
+    ☀️
+  </button>
+  <button onclick="setTheme('dark')" class="px-3 py-2 hover:bg-gray-100" title="Dark mode">
+    🌙
+  </button>
+  <button onclick="setTheme('system')" class="px-3 py-2 hover:bg-gray-100" title="System mode">
+    💻
+  </button>
+</div>
     </nav>
 
   </div>
