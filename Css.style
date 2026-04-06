@@ -1,0 +1,170 @@
+.section {
+  max-width: 1120px;
+  margin: 0%;
+  padding: 5rem 2rem;
+}
+.section-head {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+.section-eyebrow {
+  font-family: "Cinzel", serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--burgundy-dark);
+}
+.section-title em {
+  font-style: italic;
+  color: var(--burgundy);
+}
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+/*Event section*/
+#events {
+  background: var(--cream);
+}
+.events .section {
+  padding-bottom: 5rem;
+}
+.events-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+@media (max-width: 720px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+  header {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+.event-card {
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    box-shadow 0.35s,
+    transform 0.35s;
+}
+.event-card:hover {
+  box-shadow: 0 12px 40px rgba(28, 18, 9, 0.12);
+  transform: translateY(-4px);
+}
+
+/* ── PHOTO ── */
+.event-photo {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  filter: sepia(15%) contrast(1.05);
+  transition:
+    filter 0.4s,
+    transform 0.4s;
+}
+.event-card:hover .event-photo {
+  filter: sepia(0%) contrast(1.08);
+  transform: scale(1.03);
+}
+.event-photo-wrap {
+  overflow: hidden;
+  position: relative;
+
+
+/* Date badge overlapping photo */
+.event-badge .month {
+  font-family: "Cinzel", serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-lt);
+  text-transform: uppercase;
+.event-body {
+  padding: 2rem 2rem 1.8rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.event-tag {
+  font-family: "Cinzel", serif;
+  font-size: 0.57rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+}
+.event-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: var(--burgundy-dark);
+  line-height: 1.25;
+  margin-bottom: 0.8rem;
+}
+.event-desc {
+  font-size: 0.97rem;
+  color: var(--muted);
+  line-height: 1.75;
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+/* .event-meta-row { */
+.event-meta-row span:first-child {
+  color: var(--gold);
+  font-size: 1rem;
+  width: 1.2rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+.event-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+.event-price .amount {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--burgundy);
+}
+.event-price .per {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.btn-reserve {
+  display: block;
+  text-align: center;
+  font-family: "Cinzel", serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.85rem 1.5rem;
+  background: var(--burgundy-dark);
+  color: var(--ivory);
+  border: 1px solid var(--burgundy-dark);
+  transition: all 0.3s;
+  cursor: pointer;
+}
