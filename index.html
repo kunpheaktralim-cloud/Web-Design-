@@ -41,17 +41,34 @@
          class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
         Login
       </a>
-<div class="flex items-center rounded-lg overflow-hidden border border-gray-300 bg-white shadow-sm">
-  <button onclick="setTheme('light')" class="px-3 py-2 hover:bg-gray-100" title="Light mode">
-    ☀️
+   <div class="relative">
+  <button onclick="toggleThemeMenu()" 
+    class="flex items-center gap-2 px-3 py-2 rounded-lg border bg-white hover:bg-gray-100 text-sm">
+    <span id="themeIcon">💻</span>
+    <span id="themeText">System</span>
   </button>
-  <button onclick="setTheme('dark')" class="px-3 py-2 hover:bg-gray-100" title="Dark mode">
-    🌙
-  </button>
-  <button onclick="setTheme('system')" class="px-3 py-2 hover:bg-gray-100" title="System mode">
-    💻
-  </button>
+
+  <div id="themeMenu" 
+    class="hidden absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border text-sm overflow-hidden">
+
+    <button onclick="setTheme('light')" 
+      class="w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100">
+      ☀️ Light
+    </button>
+
+    <button onclick="setTheme('dark')" 
+      class="w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100">
+      🌙 Dark
+    </button>
+
+    <button onclick="setTheme('system')" 
+      class="w-full flex items-center gap-2 px-4 py-2 hover:bg-gray-100">
+      💻 System
+    </button>
+
+  </div>
 </div>
+
     </nav>
 
   </div>
