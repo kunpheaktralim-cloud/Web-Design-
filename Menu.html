@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <header class="bg-white shadow-md sticky top-0 z-50">
+  <header class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
       <!-- LOGO LEFT -->
@@ -24,13 +24,36 @@
 
       <!-- NAV RIGHT -->
       <nav class="hidden md:flex items-center space-x-8 font-medium">
-        <a href="index.html" class=" hover:text-orange-500 transition">Home</a>
-        <a href="Menu.html" class="text-green-700 hover:text-orange-500 transition">Menu</a>
+        <a href="index.html" class="text-green-700 dark:text-green-400 hover:text-orange-500 transition">Home</a>
+        <a href="Menu.html" class="hover:text-orange-500 transition">Menu</a>
         <a href="Contact.html" class="hover:text-orange-500 transition">Contact</a>
         <a href="Event.html" class="hover:text-orange-500 transition">Event</a>
         <a href="Login.html" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
           Login
         </a>
+        <div class="relative" id="themeDropdown">
+          <button type="button" onclick="toggleThemeMenu()"
+            class="flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-100 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800">
+            <i id="themeIcon" data-lucide="sun" class="w-4 h-4"></i>
+            <span id="themeText">Light</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500 dark:text-gray-300"></i>
+          </button>
+
+          <div id="themeMenu"
+            class="hidden absolute right-0 top-full mt-2 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 py-2 shadow-xl z-50">
+            <button onclick="setTheme('light')"
+              class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800">
+              <i data-lucide="sun" class="w-4 h-4"></i>
+              Light
+            </button>
+
+            <button onclick="setTheme('dark')"
+              class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800">
+              <i data-lucide="moon" class="w-4 h-4"></i>
+              Dark
+            </button>
+          </div>
+        </div>
       </nav>
 
     </div>
