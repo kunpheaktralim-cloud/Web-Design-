@@ -990,50 +990,50 @@
   </footer>
 
   <script>
-  const themeMenu = document.getElementById("themeMenu");
-  const themeIcon = document.getElementById("themeIcon");
-  const themeText = document.getElementById("themeText");
-  const themeDropdown = document.getElementById("themeDropdown");
+    const themeMenu = document.getElementById("themeMenu");
+    const themeIcon = document.getElementById("themeIcon");
+    const themeText = document.getElementById("themeText");
+    const themeDropdown = document.getElementById("themeDropdown");
 
-  function toggleThemeMenu() {
-    themeMenu.classList.toggle("hidden");
-  }
-
-  function applyTheme(theme) {
-    const html = document.documentElement;
-
-    if (theme === "dark") {
-      html.classList.add("dark");
-      themeIcon.setAttribute("data-lucide", "moon");
-      themeText.textContent = "Dark";
-    } else {
-      html.classList.remove("dark");
-      themeIcon.setAttribute("data-lucide", "sun");
-      themeText.textContent = "Light";
+    function toggleThemeMenu() {
+      themeMenu.classList.toggle("hidden");
     }
 
-    lucide.createIcons();
-  }
+    function applyTheme(theme) {
+      const html = document.documentElement;
 
-  function setTheme(theme) {
-    localStorage.setItem("theme", theme);
-    applyTheme(theme);
-    themeMenu.classList.add("hidden");
-  }
+      if (theme === "dark") {
+        html.classList.add("dark");
+        themeIcon.setAttribute("data-lucide", "moon");
+        themeText.textContent = "Dark";
+      } else {
+        html.classList.remove("dark");
+        themeIcon.setAttribute("data-lucide", "sun");
+        themeText.textContent = "Light";
+      }
 
-  // Load saved theme (default = light)
-  const savedTheme = localStorage.getItem("theme") || "light";
-  applyTheme(savedTheme);
+      lucide.createIcons();
+    }
 
-  // Close dropdown when clicking outside
-  document.addEventListener("click", function (e) {
-    if (!themeDropdown.contains(e.target)) {
+    function setTheme(theme) {
+      localStorage.setItem("theme", theme);
+      applyTheme(theme);
       themeMenu.classList.add("hidden");
     }
-  });
 
-  lucide.createIcons();
-</script>
+    // Load saved theme (default = light)
+    const savedTheme = localStorage.getItem("theme") || "light";
+    applyTheme(savedTheme);
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (e) {
+      if (!themeDropdown.contains(e.target)) {
+        themeMenu.classList.add("hidden");
+      }
+    });
+
+    lucide.createIcons();
+  </script>
 
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
