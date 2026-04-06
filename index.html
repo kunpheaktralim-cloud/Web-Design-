@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,6 +23,7 @@
     }
   </script>
 </head>
+
 <body class="bg-white text-gray-800 dark:bg-gray-950 dark:text-gray-100">
 
   <!-- Navbar -->
@@ -30,8 +32,7 @@
 
       <!-- LOGO LEFT -->
       <a href="index.html" class="flex items-center">
-        <img src="logo.png" alt="Khmer Taste Logo"
-             class="h-14 md:h-16 w-auto object-contain">
+        <img src="logo.png" alt="Khmer Taste Logo" class="h-14 md:h-16 w-auto object-contain">
       </a>
 
       <!-- NAV RIGHT -->
@@ -40,42 +41,32 @@
         <a href="Menu.html" class="hover:text-orange-500 transition">Menu</a>
         <a href="Contact.html" class="hover:text-orange-500 transition">Contact</a>
         <a href="Event.html" class="hover:text-orange-500 transition">Event</a>
-        <a href="Login.html"
-           class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
+        <a href="Login.html" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
           Login
         </a>
         <div class="relative" id="themeDropdown">
-  <button
-    type="button"
-    onclick="toggleThemeMenu()"
-    class="flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-100 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800"
-  >
-    <i id="themeIcon" data-lucide="sun" class="w-4 h-4"></i>
-    <span id="themeText">Light</span>
-    <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500 dark:text-gray-300"></i>
-  </button>
+          <button type="button" onclick="toggleThemeMenu()"
+            class="flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-100 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800">
+            <i id="themeIcon" data-lucide="sun" class="w-4 h-4"></i>
+            <span id="themeText">Light</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500 dark:text-gray-300"></i>
+          </button>
 
-  <div
-    id="themeMenu"
-    class="hidden absolute right-0 top-full mt-2 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 py-2 shadow-xl z-50"
-  >
-    <button
-      onclick="setTheme('light')"
-      class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800"
-    >
-      <i data-lucide="sun" class="w-4 h-4"></i>
-      Light
-    </button>
+          <div id="themeMenu"
+            class="hidden absolute right-0 top-full mt-2 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 py-2 shadow-xl z-50">
+            <button onclick="setTheme('light')"
+              class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800">
+              <i data-lucide="sun" class="w-4 h-4"></i>
+              Light
+            </button>
 
-    <button
-      onclick="setTheme('dark')"
-      class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800"
-    >
-      <i data-lucide="moon" class="w-4 h-4"></i>
-      Dark
-    </button>
-  </div>
-</div>
+            <button onclick="setTheme('dark')"
+              class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800">
+              <i data-lucide="moon" class="w-4 h-4"></i>
+              Dark
+            </button>
+          </div>
+        </div>
       </nav>
 
     </div>
@@ -90,14 +81,16 @@
           Experience the Rich Flavor of Khmer Food
         </h2>
         <p class="text-lg text-green-50 mb-8">
-          Discover fresh ingredients, traditional recipes, and a warm Cambodian dining experience for family and friends.
+          Discover fresh ingredients, traditional recipes, and a warm Cambodian dining experience for family and
+          friends.
         </p>
 
         <div class="flex flex-wrap gap-4">
           <a href="Menu.html" class="bg-accent px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
             View Menu
           </a>
-          <a href="Contact.html" class="bg-white dark:bg-gray-900 text-primary dark:text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          <a href="Contact.html"
+            class="bg-white dark:bg-gray-900 text-primary dark:text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition">
             Contact Us
           </a>
         </div>
@@ -122,7 +115,8 @@
     <div class="max-w-5xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-bold text-primary dark:text-green-400 mb-4">About Us</h2>
       <p class="text-gray-600 dark:text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto">
-        Khmer Taste Restaurant brings the heart of Cambodia to your table. We proudly serve classic Khmer dishes prepared with care, combining traditional flavor with a clean and modern dining atmosphere.
+        Khmer Taste Restaurant brings the heart of Cambodia to your table. We proudly serve classic Khmer dishes
+        prepared with care, combining traditional flavor with a clean and modern dining atmosphere.
       </p>
     </div>
   </section>
@@ -130,7 +124,7 @@
   <!-- Featured Dishes -->
   <section class="py-20 bg-white dark:bg-gray-950">
     <div class="max-w-7xl mx-auto px-6">
-      
+
       <!-- Heading -->
       <div class="text-center mb-14">
         <h2 class="text-3xl md:text-4xl font-bold text-primary dark:text-green-400 mb-3">
@@ -145,10 +139,10 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
         <!-- Card 1 -->
-        <div class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-100 dark:border-gray-800">
+        <div
+          class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-100 dark:border-gray-800">
           <div class="overflow-hidden">
-            <img src="./image/amok.jpg"
-                 class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+            <img src="./image/amok.jpg" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
           </div>
 
           <div class="p-6">
@@ -168,10 +162,11 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-100 dark:border-gray-800">
+        <div
+          class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-100 dark:border-gray-800">
           <div class="overflow-hidden">
             <img src="./image/loklak.jpg"
-                 class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+              class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
           </div>
 
           <div class="p-6">
@@ -191,10 +186,11 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-100 dark:border-gray-800">
+        <div
+          class="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 border border-gray-100 dark:border-gray-800">
           <div class="overflow-hidden">
             <img src="./image/numbanhjok.jpg"
-                 class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+              class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
           </div>
 
           <div class="p-6">
@@ -218,7 +214,7 @@
       <!-- Explore Button -->
       <div class="text-center mt-14">
         <a href="Menu.html"
-           class="inline-block border-2 border-accent text-accent px-8 py-3 rounded-full font-semibold hover:bg-accent hover:text-white transition">
+          class="inline-block border-2 border-accent text-accent px-8 py-3 rounded-full font-semibold hover:bg-accent hover:text-white transition">
           Explore Full Menu →
         </a>
       </div>
@@ -237,7 +233,8 @@
         <a href="Contact.html" class="bg-accent px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
           Contact Us
         </a>
-        <a href="Login.html" class="bg-white dark:bg-gray-900 text-primary dark:text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+        <a href="Login.html"
+          class="bg-white dark:bg-gray-900 text-primary dark:text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition">
           Login
         </a>
       </div>
@@ -278,50 +275,51 @@
   </footer>
 
   <script>
-  const themeMenu = document.getElementById("themeMenu");
-  const themeIcon = document.getElementById("themeIcon");
-  const themeText = document.getElementById("themeText");
-  const themeDropdown = document.getElementById("themeDropdown");
+    const themeMenu = document.getElementById("themeMenu");
+    const themeIcon = document.getElementById("themeIcon");
+    const themeText = document.getElementById("themeText");
+    const themeDropdown = document.getElementById("themeDropdown");
 
-  function toggleThemeMenu() {
-    themeMenu.classList.toggle("hidden");
-  }
-
-  function applyTheme(theme) {
-    const html = document.documentElement;
-
-    if (theme === "dark") {
-      html.classList.add("dark");
-      themeIcon.setAttribute("data-lucide", "moon");
-      themeText.textContent = "Dark";
-    } else {
-      html.classList.remove("dark");
-      themeIcon.setAttribute("data-lucide", "sun");
-      themeText.textContent = "Light";
+    function toggleThemeMenu() {
+      themeMenu.classList.toggle("hidden");
     }
 
-    lucide.createIcons();
-  }
+    function applyTheme(theme) {
+      const html = document.documentElement;
 
-  function setTheme(theme) {
-    localStorage.setItem("theme", theme);
-    applyTheme(theme);
-    themeMenu.classList.add("hidden");
-  }
+      if (theme === "dark") {
+        html.classList.add("dark");
+        themeIcon.setAttribute("data-lucide", "moon");
+        themeText.textContent = "Dark";
+      } else {
+        html.classList.remove("dark");
+        themeIcon.setAttribute("data-lucide", "sun");
+        themeText.textContent = "Light";
+      }
 
-  // Load saved theme (default = light)
-  const savedTheme = localStorage.getItem("theme") || "light";
-  applyTheme(savedTheme);
+      lucide.createIcons();
+    }
 
-  // Close dropdown when clicking outside
-  document.addEventListener("click", function (e) {
-    if (!themeDropdown.contains(e.target)) {
+    function setTheme(theme) {
+      localStorage.setItem("theme", theme);
+      applyTheme(theme);
       themeMenu.classList.add("hidden");
     }
-  });
 
-  lucide.createIcons();
-</script>
+    // Load saved theme (default = light)
+    const savedTheme = localStorage.getItem("theme") || "light";
+    applyTheme(savedTheme);
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", function (e) {
+      if (!themeDropdown.contains(e.target)) {
+        themeMenu.classList.add("hidden");
+      }
+    });
+
+    lucide.createIcons();
+  </script>
 
 </body>
+
 </html>
