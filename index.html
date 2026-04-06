@@ -14,7 +14,7 @@
             primary: "#2E7D32",
             accent: "#FF7A00",
             soft: "#FFF8F1"
-          }
+          },
         
             darkMode: 'class'
         
@@ -45,38 +45,47 @@
          class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
         Login
       </a>
-      <div class="relative" id="themeDropdown">
-  <button onclick="toggleThemeMenu()"
-    class="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50">
-
+<div class="relative" id="themeDropdown">
+  <button
+    type="button"
+    onclick="toggleThemeMenu()"
+    class="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+  >
     <i id="themeIcon" data-lucide="monitor" class="w-4 h-4"></i>
     <span id="themeText">System</span>
-
     <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500"></i>
   </button>
 
-  <!-- Dropdown -->
-  <div id="themeMenu"
-    class="hidden absolute right-0 mt-2 w-44 rounded-xl border border-gray-200 bg-white py-2 shadow-xl">
-
-    <button onclick="setTheme('light')"
-      class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+  <div
+    id="themeMenu"
+    class="hidden absolute right-0 top-full mt-2 w-44 rounded-xl border border-gray-200 bg-white py-2 shadow-xl z-50"
+  >
+    <button
+      type="button"
+      onclick="setTheme('light')"
+      class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"
+    >
       <i data-lucide="sun" class="w-4 h-4"></i>
-      Light
+      <span>Light</span>
     </button>
 
-    <button onclick="setTheme('dark')"
-      class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+    <button
+      type="button"
+      onclick="setTheme('dark')"
+      class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"
+    >
       <i data-lucide="moon" class="w-4 h-4"></i>
-      Dark
+      <span>Dark</span>
     </button>
 
-    <button onclick="setTheme('system')"
-      class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50">
+    <button
+      type="button"
+      onclick="setTheme('system')"
+      class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50"
+    >
       <i data-lucide="monitor" class="w-4 h-4"></i>
-      System
+      <span>System</span>
     </button>
-
   </div>
 </div>
     </nav>
