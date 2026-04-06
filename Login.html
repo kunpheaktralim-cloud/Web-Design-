@@ -99,12 +99,12 @@
             (u) => u.username === username && u.password === password,
           );
 
-          // if(user) {
-          //     alert("✅ Login successful!");
-          //     window.location.href = "menu.html";
-          // } else {
-          //     showMsg("❌ Invalid username or password!");
-          // }
+          if(user) {
+              alert("✅ Login successful!");
+              window.location.href = "menu.html";
+          } else {
+              showMsg("❌ Invalid username or password!");
+          }
         } else {
           // REGISTER
 
