@@ -6,14 +6,14 @@
     <title>Login System</title>
 
     <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="link href="./src/output.css" rel="stylesheet"></script>
   </head>
 
   <body
-    class="h-screen flex items-center justify-center bg-gradient-to-r from-pink-500 to-red-500"
+    class="h-screen flex items-center justify-center bg-gradient-to-r from-green-400 to-green-800 accent-yellow-600"
   >
     <div class="bg-white p-8 rounded-2xl shadow-xl w-80">
-      <h1 id="title" class="text-2xl font-bold text-center text-pink-500 mb-6">
+      <h1 id="title" class="text-2xl font-bold text-center text-blue-400 mb-6">
         Login
       </h1>
 
@@ -25,7 +25,7 @@
         id="username"
         type="text"
         placeholder="Username"
-        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-pink-400"
+        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
       />
 
       <!-- Password -->
@@ -33,7 +33,7 @@
         id="password"
         type="password"
         placeholder="Password"
-        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-pink-400"
+        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
       />
 
       <!-- Confirm Password (hidden by default) -->
@@ -41,19 +41,19 @@
         id="confirmPassword"
         type="password"
         placeholder="Confirm Password"
-        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-pink-400 hidden"
+        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400 hidden"
       />
 
       <!-- Button -->
       <button 
         onclick="handleAction()"
-        class="w-full bg-pink-500 text-white p-3 rounded-lg hover:bg-red-500"
-      ><a href="Menu.html">submit</a></button>
+        class="w-full bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-300"
+      ><a href="color.html">submit</a></button>
 
       <!-- Switch -->
       <p class="text-sm text-center mt-4">
         <span id="switchText">Don't have an account?</span>
-        <a href="#" onclick="toggleMode()" class="text-pink-500 font-bold"
+        <a href="#" onclick="toggleMode()" class="text-blue-400 font-bold"
           >Register</a
         >
       </p>
@@ -99,12 +99,12 @@
             (u) => u.username === username && u.password === password,
           );
 
-          if(user) {
-              alert("✅ Login successful!");
-              window.location.href = "menu.html";
-          } else {
-              showMsg("❌ Invalid username or password!");
-          }
+          // if(user) {
+          //     alert("✅ Login successful!");
+          //     window.location.href = "menu.html";
+          // } else {
+          //     showMsg("❌ Invalid username or password!");
+          // }
         } else {
           // REGISTER
 
