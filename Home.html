@@ -1,91 +1,695 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./src/output.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
-  </head>
-  <body class="bg-gray-100 w-full h-full min-h-screen max-h-screen flex flex-col">
-    
-    
-      <nav class="flex justify-between bg-gray-500 px-3 py-4 items-center p-4 ">
-        <ul class="flex">
-          <!-- side left -->
-          <div class=" flex items-center gap-7 left-0">
-            
-             <img src="./img/Logo V2.png" alt="logo" class="w-12 h-12">
-              
-          </div>
-               
-               
-               
-              
-            
-            <!-- side right -->
-          <div class=" flex items-center gap-2 right-0">
-            <li>
-              <!-- Home -->
-              <a href="#" class="text-white bg-gray-500 px-4 py-2 rounded-full hover:bg-gray-700 transition duration-300"
-                >Home</a
-            >
-          </li>
-          <!-- Events -->
-          <li>
-            <a href="#" class="text-white bg-gray-500 px-4 py-2 rounded-full hover:bg-gray-700 transition duration-300"
-              >Events</a
-            >
-          </li>
-          <!-- About -->  
 
-          <li>
-            <a href="#" class="text-white bg-gray-500 px-4 py-2 rounded-full hover:bg-gray-700 transition duration-300"
-              >About</a
-            >
-          </li>
-          <li>
-            <a href="#" class="text-white bg-gray-500 px-4 py-2 rounded-full hover:bg-gray-700 transition duration-300"
-              >Contact</a
-            >
-          </li>
-          <!--  Login -->
-          <li>
-            <a href="#" class="text-white bg-gray-500 px-4 py-2 rounded-full hover:bg-gray-700 transition duration-300"
-              >Login</a
-            >
-          </li>
-          <!-- Signup -->
-          <li>
-            <a href="#" class="text-white bg-gray-500 px-4 py-2 rounded-full hover:bg-gray-700 transition duration-300"
-              >Sign up</a
-            >
-          </li>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LUMIÈRE — A fine dining experience offering the world's finest cuisines crafted by master chefs. Reserve your table today." />
+  <title>LUMIÈRE — Fine Dining Restaurant</title>
+  <link rel="stylesheet" href="./src/output.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Base ── */
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: #14532d; overflow-x: hidden; background: #ffffff; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #ffffff; }
+    ::-webkit-scrollbar-thumb { background: #16a34a; border-radius: 3px; }
+
+    /* ── Keyframes ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+    @keyframes scroll-left {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── Scroll Reveal ── */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Navbar Scrolled State (JS-toggled) ── */
+    .navbar-scrolled {
+      background: rgba(255, 255, 255, 0.92) !important;
+      backdrop-filter: blur(20px) !important;
+      border-bottom: 1px solid rgba(22, 163, 74, 0.2) !important;
+      padding-top: 0.85rem !important;
+      padding-bottom: 0.85rem !important;
+    }
+
+    /* ── Hero Bg Zoom ── */
+    .hero-bg { transition: transform 8s ease; }
+    .hero-section:hover .hero-bg { transform: scale(1) !important; }
+
+    /* ── Category Card Glow Overlay ── */
+    .cat-card { position: relative; overflow: hidden; }
+    .cat-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(22,163,74,0.15), transparent);
+      opacity: 0; transition: opacity 0.35s ease; border-radius: inherit;
+    }
+    .cat-card:hover::before { opacity: 1; }
+    .cat-card:hover .cat-icon { transform: scale(1.15); }
+
+    /* ── Why Card Bottom Accent ── */
+    .why-card { position: relative; overflow: hidden; }
+    .why-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, #16a34a, transparent);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
+    }
+    .why-card:hover::after { transform: scaleX(1); }
+
+    /* ── Testimonials Infinite Scroll ── */
+    .testi-track { animation: scroll-left 30s linear infinite; width: max-content; }
+    .testi-track:hover { animation-play-state: paused; }
+
+    /* ── Dish img zoom ── */
+    .dish-card:hover .dish-img { transform: scale(1.08); }
+  </style>
+</head>
+
+<body class="bg-dark font-inter">
+
+  <!-- ══════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════ -->
+  <nav id="navbar"
+    class="navbar fixed top-0 left-0 right-0 z-[1000] flex justify-between items-center px-16 py-5 transition-all duration-500"
+    role="navigation" aria-label="Main navigation">
+
+    <!-- Logo -->
+    <a href="./Home.html" class="flex items-center gap-3 no-underline" aria-label="LUMIÈRE Home">
+      <img src="./img/Logo V2.png" alt="Lumière Logo" class="w-11 h-11 object-contain" />
+      <span class="font-playfair text-2xl font-bold tracking-[0.15em] text-gold">LUMIÈRE</span>
+    </a>
+
+    <!-- Nav Links -->
+    <ul class="flex items-center gap-1 list-none m-0 p-0">
+      <li>
+        <a href="./Home.html" id="nav-home"
+          class="text-gold text-sm tracking-wider px-4 py-2 rounded-full bg-gold/10 transition-all duration-300 no-underline">
+          Home
+        </a>
+      </li>
+      <li>
+        <a href="./Event.html" id="nav-events"
+          class="text-cream text-sm tracking-wider px-4 py-2 rounded-full hover:text-gold hover:bg-gold/10 transition-all duration-300 no-underline">
+          Events
+        </a>
+      </li>
+      <li>
+        <a href="./Menu.html" id="nav-menu"
+          class="text-cream text-sm tracking-wider px-4 py-2 rounded-full hover:text-gold hover:bg-gold/10 transition-all duration-300 no-underline">
+          Menu
+        </a>
+      </li>
+      <li>
+        <a href="#contact" id="nav-contact"
+          class="text-cream text-sm tracking-wider px-4 py-2 rounded-full hover:text-gold hover:bg-gold/10 transition-all duration-300 no-underline">
+          Contact
+        </a>
+      </li>
+      <li>
+        <a href="./Login.html" id="nav-login"
+          class="text-cream text-sm tracking-wider px-4 py-2 rounded-full hover:text-gold hover:bg-gold/10 transition-all duration-300 no-underline">
+          Login
+        </a>
+      </li>
+      <li>
+        <a href="./Login.html" id="nav-reserve"
+          class="bg-gold text-dark text-sm font-semibold tracking-wider px-5 py-2.5 rounded-full shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:bg-gold-light hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:-translate-y-px transition-all duration-300 no-underline">
+          Reserve a Table
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <!-- ══════════════════════════════════════
+         HERO
+    ══════════════════════════════════════ -->
+    <section class="hero-section relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden" id="hero" aria-label="Hero">
+
+      <!-- Background -->
+      <div class="hero-bg absolute inset-0 bg-[url('./img/hero-bg.png')] bg-cover bg-center scale-105" aria-hidden="true"></div>
+
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-br from-dark/85 via-dark/60 to-dark/75" aria-hidden="true"></div>
+
+      <!-- Content -->
+      <div class="relative z-10 text-center max-w-3xl px-8">
+        <span class="inline-block text-[0.75rem] font-medium tracking-[0.3em] text-gold uppercase border border-gold/20 px-5 py-1.5 rounded-full mb-6 [animation:fadeUp_0.8s_ease_both]">
+          🍽️ Fine Dining Experience
+        </span>
+
+        <h1 class="font-playfair text-[clamp(3rem,7vw,5.5rem)] font-bold leading-[1.1] text-cream mb-5 [animation:fadeUp_0.8s_ease_0.15s_both]">
+          Where Every Dish<br>Tells a <em class="text-gold not-italic">Story</em>
+        </h1>
+
+        <p class="text-[1.05rem] text-muted leading-[1.8] max-w-xl mx-auto mb-10 [animation:fadeUp_0.8s_ease_0.3s_both]">
+          Indulge in an extraordinary culinary journey crafted by world-class chefs.
+          Fresh ingredients, timeless flavors, unforgettable moments.
+        </p>
+
+        <div class="flex gap-4 justify-center flex-wrap [animation:fadeUp_0.8s_ease_0.45s_both]">
+          <a href="./Menu.html" id="hero-explore-btn"
+            class="bg-gold text-dark font-semibold text-[0.9rem] tracking-wider py-3.5 px-9 rounded-full cursor-pointer no-underline transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.35)] hover:bg-gold-light hover:shadow-[0_0_50px_rgba(212,175,55,0.5)] hover:-translate-y-0.5">
+            Explore Menu
+          </a>
+          <a href="./Login.html" id="hero-reserve-btn"
+            class="bg-transparent text-cream font-medium text-[0.9rem] tracking-wider py-3.5 px-9 rounded-full border border-white/25 cursor-pointer no-underline transition-all duration-300 hover:border-gold hover:text-gold hover:bg-gold/10 hover:-translate-y-0.5">
+            Book a Table
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 [animation:fadeUp_0.8s_ease_0.8s_both]" aria-hidden="true">
+        <span class="text-[0.7rem] tracking-[0.2em] text-muted uppercase">Scroll</span>
+        <div class="w-px h-12 bg-gradient-to-b from-gold to-transparent [animation:scrollPulse_2s_ease_infinite]"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         STATS BAR
+    ══════════════════════════════════════ -->
+    <div id="stats"
+      class="bg-surface border-t border-b border-gold/20 grid grid-cols-4 gap-4 px-16 py-10"
+      role="region" aria-label="Restaurant statistics">
+
+      <div class="text-center reveal">
+        <div class="font-playfair text-[2.5rem] font-bold text-gold leading-none" data-count="250">0</div>
+        <div class="text-[0.8rem] text-muted tracking-[0.1em] uppercase mt-1.5">Menu Items</div>
+      </div>
+      <div class="text-center reveal" style="transition-delay:0.1s">
+        <div class="font-playfair text-[2.5rem] font-bold text-gold leading-none" data-count="15000">0</div>
+        <div class="text-[0.8rem] text-muted tracking-[0.1em] uppercase mt-1.5">Happy Customers</div>
+      </div>
+      <div class="text-center reveal" style="transition-delay:0.2s">
+        <div class="font-playfair text-[2.5rem] font-bold text-gold leading-none" data-count="12">0</div>
+        <div class="text-[0.8rem] text-muted tracking-[0.1em] uppercase mt-1.5">Master Chefs</div>
+      </div>
+      <div class="text-center reveal" style="transition-delay:0.3s">
+        <div class="font-playfair text-[2.5rem] font-bold text-gold leading-none" data-count="8">0</div>
+        <div class="text-[0.8rem] text-muted tracking-[0.1em] uppercase mt-1.5">Awards Won</div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         CATEGORIES
+    ══════════════════════════════════════ -->
+    <section class="bg-dark px-16 py-24" id="categories" aria-labelledby="cat-title">
+
+      <div class="reveal mb-14">
+        <span class="inline-block text-[0.7rem] font-medium tracking-[0.3em] text-gold uppercase mb-3">Browse By Category</span>
+        <h2 class="font-playfair text-[clamp(2rem,4vw,2.75rem)] font-bold leading-tight text-cream mb-4" id="cat-title">
+          Explore Our <em class="text-gold not-italic italic">Menu</em>
+        </h2>
+        <div class="w-[60px] h-0.5 bg-gradient-to-r from-gold to-transparent my-4"></div>
+        <p class="text-[0.975rem] text-muted max-w-[480px] leading-[1.8]">From light appetizers to rich desserts — every craving, perfectly satisfied.</p>
+      </div>
+
+      <div class="grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-2">
+
+        <div class="cat-card bg-card border border-gold/20 rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-gold reveal" id="cat-appetizer" style="transition-delay:0.05s">
+          <span class="cat-icon text-5xl mb-4 block transition-transform duration-300">🥗</span>
+          <div class="font-playfair text-lg font-semibold text-cream mb-1.5">Appetizers</div>
+          <div class="text-[0.8rem] text-muted">18 dishes</div>
+        </div>
+
+        <div class="cat-card bg-card border border-gold/20 rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-gold reveal" id="cat-main" style="transition-delay:0.1s">
+          <span class="cat-icon text-5xl mb-4 block transition-transform duration-300">🥩</span>
+          <div class="font-playfair text-lg font-semibold text-cream mb-1.5">Main Course</div>
+          <div class="text-[0.8rem] text-muted">32 dishes</div>
+        </div>
+
+        <div class="cat-card bg-card border border-gold/20 rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-gold reveal" id="cat-dessert" style="transition-delay:0.15s">
+          <span class="cat-icon text-5xl mb-4 block transition-transform duration-300">🍰</span>
+          <div class="font-playfair text-lg font-semibold text-cream mb-1.5">Desserts</div>
+          <div class="text-[0.8rem] text-muted">24 dishes</div>
+        </div>
+
+        <div class="cat-card bg-card border border-gold/20 rounded-2xl p-8 text-center cursor-pointer transition-all duration-300 hover:-translate-y-2 hover:border-gold reveal" id="cat-drinks" style="transition-delay:0.2s">
+          <span class="cat-icon text-5xl mb-4 block transition-transform duration-300">🍷</span>
+          <div class="font-playfair text-lg font-semibold text-cream mb-1.5">Fine Drinks</div>
+          <div class="text-[0.8rem] text-muted">41 selections</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         POPULAR DISHES
+    ══════════════════════════════════════ -->
+    <section class="bg-surface px-16 py-24" id="popular-dishes" aria-labelledby="dishes-title">
+
+      <div class="reveal mb-14">
+        <span class="inline-block text-[0.7rem] font-medium tracking-[0.3em] text-gold uppercase mb-3">Chef's Selection</span>
+        <h2 class="font-playfair text-[clamp(2rem,4vw,2.75rem)] font-bold leading-tight text-cream mb-4" id="dishes-title">
+          Most <em class="text-gold not-italic italic">Popular</em> Dishes
+        </h2>
+        <div class="w-[60px] h-0.5 bg-gradient-to-r from-gold to-transparent my-4"></div>
+        <p class="text-[0.975rem] text-muted max-w-[480px] leading-[1.8]">Our guests' all-time favourites — dishes that keep them coming back for more.</p>
+      </div>
+
+      <div class="grid grid-cols-4 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1">
+
+        <!-- Dish 1 — Wagyu Steak -->
+        <article class="dish-card bg-card border border-gold/20 rounded-[20px] overflow-hidden transition-all duration-300 hover:-translate-y-2.5 hover:border-gold hover:shadow-[0_20px_60px_rgba(20,83,45,0.15)] relative reveal" id="dish-1" style="transition-delay:0.05s">
+          <span class="absolute top-4 left-4 z-10 text-[0.65rem] font-semibold tracking-[0.1em] uppercase px-3 py-1.5 rounded-full bg-gold text-dark">Best Seller</span>
+          <div class="relative h-[220px] overflow-hidden">
+            <img src="./img/dish-steak.png" alt="Wagyu Beef Tenderloin" loading="lazy"
+              class="dish-img w-full h-full object-cover transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-playfair text-[1.15rem] font-semibold text-cream mb-1.5">Wagyu Beef Tenderloin</h3>
+            <p class="text-[0.8rem] text-muted leading-[1.6] mb-4">Premium A5 Wagyu, red wine reduction, truffle butter, grilled asparagus.</p>
+            <div class="flex justify-between items-center">
+              <span class="font-playfair text-[1.3rem] font-bold text-gold">$68</span>
+              <span class="text-gold text-[0.75rem] tracking-[0.1em]">★★★★★</span>
+            </div>
+            <a href="./Menu.html" id="order-steak"
+              class="block w-full mt-4 py-2.5 text-center text-cream text-[0.825rem] font-medium tracking-wider border border-gold/20 rounded-full no-underline transition-all duration-300 hover:bg-gold hover:text-dark hover:border-gold">
+              Order Now
+            </a>
+          </div>
+        </article>
+
+        <!-- Dish 2 — Salmon -->
+        <article class="dish-card bg-card border border-gold/20 rounded-[20px] overflow-hidden transition-all duration-300 hover:-translate-y-2.5 hover:border-gold hover:shadow-[0_20px_60px_rgba(20,83,45,0.15)] relative reveal" id="dish-2" style="transition-delay:0.1s">
+          <span class="absolute top-4 left-4 z-10 text-[0.65rem] font-semibold tracking-[0.1em] uppercase px-3 py-1.5 rounded-full bg-[#4a9eff] text-white">Chef's Pick</span>
+          <div class="relative h-[220px] overflow-hidden">
+            <img src="./img/dish-salmon.png" alt="Pan-Seared Atlantic Salmon" loading="lazy"
+              class="dish-img w-full h-full object-cover transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-playfair text-[1.15rem] font-semibold text-cream mb-1.5">Pan-Seared Salmon</h3>
+            <p class="text-[0.8rem] text-muted leading-[1.6] mb-4">Atlantic salmon fillet, lemon butter sauce, capers, seasonal vegetables.</p>
+            <div class="flex justify-between items-center">
+              <span class="font-playfair text-[1.3rem] font-bold text-gold">$42</span>
+              <span class="text-gold text-[0.75rem] tracking-[0.1em]">★★★★★</span>
+            </div>
+            <a href="./Menu.html" id="order-salmon"
+              class="block w-full mt-4 py-2.5 text-center text-cream text-[0.825rem] font-medium tracking-wider border border-gold/20 rounded-full no-underline transition-all duration-300 hover:bg-gold hover:text-dark hover:border-gold">
+              Order Now
+            </a>
+          </div>
+        </article>
+
+        <!-- Dish 3 — Risotto -->
+        <article class="dish-card bg-card border border-gold/20 rounded-[20px] overflow-hidden transition-all duration-300 hover:-translate-y-2.5 hover:border-gold hover:shadow-[0_20px_60px_rgba(20,83,45,0.15)] relative reveal" id="dish-3" style="transition-delay:0.15s">
+          <div class="relative h-[220px] overflow-hidden">
+            <img src="./img/dish-risotto.png" alt="Truffle Mushroom Risotto" loading="lazy"
+              class="dish-img w-full h-full object-cover transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-playfair text-[1.15rem] font-semibold text-cream mb-1.5">Truffle Mushroom Risotto</h3>
+            <p class="text-[0.8rem] text-muted leading-[1.6] mb-4">Arborio rice, wild mushrooms, fresh truffle, aged Parmesan, herb oil.</p>
+            <div class="flex justify-between items-center">
+              <span class="font-playfair text-[1.3rem] font-bold text-gold">$38</span>
+              <span class="text-gold text-[0.75rem] tracking-[0.1em]">★★★★☆</span>
+            </div>
+            <a href="./Menu.html" id="order-risotto"
+              class="block w-full mt-4 py-2.5 text-center text-cream text-[0.825rem] font-medium tracking-wider border border-gold/20 rounded-full no-underline transition-all duration-300 hover:bg-gold hover:text-dark hover:border-gold">
+              Order Now
+            </a>
+          </div>
+        </article>
+
+        <!-- Dish 4 — Lava Cake -->
+        <article class="dish-card bg-card border border-gold/20 rounded-[20px] overflow-hidden transition-all duration-300 hover:-translate-y-2.5 hover:border-gold hover:shadow-[0_20px_60px_rgba(20,83,45,0.15)] relative reveal" id="dish-4" style="transition-delay:0.2s">
+          <span class="absolute top-4 left-4 z-10 text-[0.65rem] font-semibold tracking-[0.1em] uppercase px-3 py-1.5 rounded-full bg-[#c0392b] text-white">⭐ Signature</span>
+          <div class="relative h-[220px] overflow-hidden">
+            <img src="./img/dish-cake.png" alt="Chocolate Lava Cake" loading="lazy"
+              class="dish-img w-full h-full object-cover transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent"></div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-playfair text-[1.15rem] font-semibold text-cream mb-1.5">Chocolate Lava Cake</h3>
+            <p class="text-[0.8rem] text-muted leading-[1.6] mb-4">Warm dark chocolate fondant, vanilla bean ice cream, gold leaf garnish.</p>
+            <div class="flex justify-between items-center">
+              <span class="font-playfair text-[1.3rem] font-bold text-gold">$22</span>
+              <span class="text-gold text-[0.75rem] tracking-[0.1em]">★★★★★</span>
+            </div>
+            <a href="./Menu.html" id="order-cake"
+              class="block w-full mt-4 py-2.5 text-center text-cream text-[0.825rem] font-medium tracking-wider border border-gold/20 rounded-full no-underline transition-all duration-300 hover:bg-gold hover:text-dark hover:border-gold">
+              Order Now
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         WHY CHOOSE US
+    ══════════════════════════════════════ -->
+    <section class="bg-dark px-16 py-24" id="why-us" aria-labelledby="why-title">
+
+      <div class="reveal flex flex-col items-center text-center mb-14">
+        <span class="inline-block text-[0.7rem] font-medium tracking-[0.3em] text-gold uppercase mb-3">Why LUMIÈRE</span>
+        <h2 class="font-playfair text-[clamp(2rem,4vw,2.75rem)] font-bold leading-tight text-cream mb-4" id="why-title">
+          The <em class="text-gold not-italic italic">Difference</em> You'll Taste
+        </h2>
+        <div class="w-[60px] h-0.5 bg-gradient-to-r from-gold to-transparent my-4 mx-auto"></div>
+        <p class="text-[0.975rem] text-muted max-w-[480px] leading-[1.8] text-center">Everything we do is crafted with passion, precision, and a deep love for exceptional food.</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-8 max-lg:grid-cols-2 max-sm:grid-cols-1">
+
+        <div class="why-card bg-card border border-gold/20 rounded-[20px] p-10 transition-all duration-300 hover:-translate-y-1.5 hover:border-gold reveal" id="why-ingredients" style="transition-delay:0.05s">
+          <div class="w-16 h-16 bg-gold/[0.15] border border-gold/20 rounded-2xl flex items-center justify-center text-[1.75rem] mb-6 transition-all duration-300 group-hover:bg-gold">🌿</div>
+          <h3 class="font-playfair text-[1.2rem] font-semibold text-cream mb-3">100% Fresh Ingredients</h3>
+          <p class="text-[0.875rem] text-muted leading-[1.8]">We source only the finest seasonal ingredients from trusted local farmers and international suppliers daily.</p>
+        </div>
+
+        <div class="why-card bg-card border border-gold/20 rounded-[20px] p-10 transition-all duration-300 hover:-translate-y-1.5 hover:border-gold reveal" id="why-chefs" style="transition-delay:0.1s">
+          <div class="w-16 h-16 bg-gold/[0.15] border border-gold/20 rounded-2xl flex items-center justify-center text-[1.75rem] mb-6 transition-all duration-300">👨‍🍳</div>
+          <h3 class="font-playfair text-[1.2rem] font-semibold text-cream mb-3">World-Class Chefs</h3>
+          <p class="text-[0.875rem] text-muted leading-[1.8]">Our team of 12 master chefs brings decades of Michelin-starred experience to every single plate.</p>
+        </div>
+
+        <div class="why-card bg-card border border-gold/20 rounded-[20px] p-10 transition-all duration-300 hover:-translate-y-1.5 hover:border-gold reveal max-lg:col-span-2 max-sm:col-span-1" id="why-ambiance" style="transition-delay:0.15s">
+          <div class="w-16 h-16 bg-gold/[0.15] border border-gold/20 rounded-2xl flex items-center justify-center text-[1.75rem] mb-6 transition-all duration-300">✨</div>
+          <h3 class="font-playfair text-[1.2rem] font-semibold text-cream mb-3">Unforgettable Ambiance</h3>
+          <p class="text-[0.875rem] text-muted leading-[1.8]">From intimate candlelit dinners to grand celebrations, we create the perfect setting for every occasion.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         TESTIMONIALS
+    ══════════════════════════════════════ -->
+    <section class="bg-surface py-24 overflow-hidden" id="testimonials" aria-labelledby="testi-title">
+
+      <div class="px-16 reveal flex flex-col items-center text-center mb-14">
+        <span class="inline-block text-[0.7rem] font-medium tracking-[0.3em] text-gold uppercase mb-3">Guest Reviews</span>
+        <h2 class="font-playfair text-[clamp(2rem,4vw,2.75rem)] font-bold leading-tight text-cream mb-4" id="testi-title">
+          What Our <em class="text-gold not-italic italic">Guests</em> Say
+        </h2>
+        <div class="w-[60px] h-0.5 bg-gradient-to-r from-gold to-transparent my-4 mx-auto"></div>
+      </div>
+
+      <!-- Infinite scroll track -->
+      <div class="overflow-hidden -mx-16 px-16" aria-label="Customer testimonials">
+        <div class="testi-track flex gap-6" id="testi-track">
+
+          <!-- Cards x2 for seamless loop -->
+          <div class="bg-card border border-gold/20 rounded-[20px] p-8 min-w-[340px] max-w-[340px] transition-colors duration-300 hover:border-gold shrink-0">
+            <div class="text-gold text-[0.85rem] tracking-[0.15em] mb-4">★★★★★</div>
+            <p class="font-playfair text-[1rem] italic text-cream leading-[1.75] mb-6">"The Wagyu steak was an absolute revelation. Every bite melted in my mouth. This is the finest dining experience I've ever had."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-gold to-[#8B6914] flex items-center justify-center font-bold text-dark flex-shrink-0">S</div>
+              <div>
+                <div class="font-semibold text-[0.9rem] text-cream">Sophie Laurent</div>
+                <div class="text-[0.775rem] text-muted mt-0.5">Food Critic, Paris</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-card border border-gold/20 rounded-[20px] p-8 min-w-[340px] max-w-[340px] transition-colors duration-300 hover:border-gold shrink-0">
+            <div class="text-gold text-[0.85rem] tracking-[0.15em] mb-4">★★★★★</div>
+            <p class="font-playfair text-[1rem] italic text-cream leading-[1.75] mb-6">"We celebrated our anniversary here and it was simply magical. The ambiance, the service, and the food — all absolutely perfect."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#4a9eff] to-[#0050cc] flex items-center justify-center font-bold text-white flex-shrink-0">J</div>
+              <div>
+                <div class="font-semibold text-[0.9rem] text-cream">James & Emma Wilson</div>
+                <div class="text-[0.775rem] text-muted mt-0.5">Regular Guests</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-card border border-gold/20 rounded-[20px] p-8 min-w-[340px] max-w-[340px] transition-colors duration-300 hover:border-gold shrink-0">
+            <div class="text-gold text-[0.85rem] tracking-[0.15em] mb-4">★★★★★</div>
+            <p class="font-playfair text-[1rem] italic text-cream leading-[1.75] mb-6">"The truffle risotto transported me straight to Northern Italy. Exceptional craftsmanship and the wine pairing was impeccable."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#c0392b] to-[#6c0000] flex items-center justify-center font-bold text-white flex-shrink-0">A</div>
+              <div>
+                <div class="font-semibold text-[0.9rem] text-cream">Alessandro Rossi</div>
+                <div class="text-[0.775rem] text-muted mt-0.5">Executive Chef, Milan</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-card border border-gold/20 rounded-[20px] p-8 min-w-[340px] max-w-[340px] transition-colors duration-300 hover:border-gold shrink-0">
+            <div class="text-gold text-[0.85rem] tracking-[0.15em] mb-4">★★★★★</div>
+            <p class="font-playfair text-[1rem] italic text-cream leading-[1.75] mb-6">"The chocolate lava cake is the most decadent dessert I've ever tasted. I've already booked my next reservation!"</p>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#2ecc71] to-[#006b30] flex items-center justify-center font-bold text-white flex-shrink-0">M</div>
+              <div>
+                <div class="font-semibold text-[0.9rem] text-cream">Mei Lin Chen</div>
+                <div class="text-[0.775rem] text-muted mt-0.5">Travel Blogger</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-card border border-gold/20 rounded-[20px] p-8 min-w-[340px] max-w-[340px] transition-colors duration-300 hover:border-gold shrink-0">
+            <div class="text-gold text-[0.85rem] tracking-[0.15em] mb-4">★★★★★</div>
+            <p class="font-playfair text-[1rem] italic text-cream leading-[1.75] mb-6">"Brought our international clients here and they were blown away. LUMIÈRE is our go-to for every business dinner."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#9b59b6] to-[#4a0e6e] flex items-center justify-center font-bold text-white flex-shrink-0">R</div>
+              <div>
+                <div class="font-semibold text-[0.9rem] text-cream">Robert Müller</div>
+                <div class="text-[0.775rem] text-muted mt-0.5">CEO, Frankfurt</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Duplicate for seamless loop -->
+          <div class="bg-card border border-gold/20 rounded-[20px] p-8 min-w-[340px] max-w-[340px] transition-colors duration-300 hover:border-gold shrink-0" aria-hidden="true">
+            <div class="text-gold text-[0.85rem] tracking-[0.15em] mb-4">★★★★★</div>
+            <p class="font-playfair text-[1rem] italic text-cream leading-[1.75] mb-6">"The Wagyu steak was an absolute revelation. Every bite melted in my mouth. This is the finest dining experience I've ever had."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-gold to-[#8B6914] flex items-center justify-center font-bold text-dark flex-shrink-0">S</div>
+              <div>
+                <div class="font-semibold text-[0.9rem] text-cream">Sophie Laurent</div>
+                <div class="text-[0.775rem] text-muted mt-0.5">Food Critic, Paris</div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-card border border-gold/20 rounded-[20px] p-8 min-w-[340px] max-w-[340px] transition-colors duration-300 hover:border-gold shrink-0" aria-hidden="true">
+            <div class="text-gold text-[0.85rem] tracking-[0.15em] mb-4">★★★★★</div>
+            <p class="font-playfair text-[1rem] italic text-cream leading-[1.75] mb-6">"We celebrated our anniversary here and it was simply magical. The ambiance, the service, and the food — all absolutely perfect."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#4a9eff] to-[#0050cc] flex items-center justify-center font-bold text-white flex-shrink-0">J</div>
+              <div>
+                <div class="font-semibold text-[0.9rem] text-cream">James & Emma Wilson</div>
+                <div class="text-[0.775rem] text-muted mt-0.5">Regular Guests</div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-card border border-gold/20 rounded-[20px] p-8 min-w-[340px] max-w-[340px] transition-colors duration-300 hover:border-gold shrink-0" aria-hidden="true">
+            <div class="text-gold text-[0.85rem] tracking-[0.15em] mb-4">★★★★★</div>
+            <p class="font-playfair text-[1rem] italic text-cream leading-[1.75] mb-6">"The truffle risotto transported me straight to Northern Italy. Exceptional craftsmanship and the wine pairing was impeccable."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#c0392b] to-[#6c0000] flex items-center justify-center font-bold text-white flex-shrink-0">A</div>
+              <div>
+                <div class="font-semibold text-[0.9rem] text-cream">Alessandro Rossi</div>
+                <div class="text-[0.775rem] text-muted mt-0.5">Executive Chef, Milan</div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-card border border-gold/20 rounded-[20px] p-8 min-w-[340px] max-w-[340px] transition-colors duration-300 hover:border-gold shrink-0" aria-hidden="true">
+            <div class="text-gold text-[0.85rem] tracking-[0.15em] mb-4">★★★★★</div>
+            <p class="font-playfair text-[1rem] italic text-cream leading-[1.75] mb-6">"The chocolate lava cake is the most decadent dessert I've ever tasted. I've already booked my next reservation!"</p>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#2ecc71] to-[#006b30] flex items-center justify-center font-bold text-white flex-shrink-0">M</div>
+              <div>
+                <div class="font-semibold text-[0.9rem] text-cream">Mei Lin Chen</div>
+                <div class="text-[0.775rem] text-muted mt-0.5">Travel Blogger</div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-card border border-gold/20 rounded-[20px] p-8 min-w-[340px] max-w-[340px] transition-colors duration-300 hover:border-gold shrink-0" aria-hidden="true">
+            <div class="text-gold text-[0.85rem] tracking-[0.15em] mb-4">★★★★★</div>
+            <p class="font-playfair text-[1rem] italic text-cream leading-[1.75] mb-6">"Brought our international clients here and they were blown away. LUMIÈRE is our go-to for every business dinner."</p>
+            <div class="flex items-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-[#9b59b6] to-[#4a0e6e] flex items-center justify-center font-bold text-white flex-shrink-0">R</div>
+              <div>
+                <div class="font-semibold text-[0.9rem] text-cream">Robert Müller</div>
+                <div class="text-[0.775rem] text-muted mt-0.5">CEO, Frankfurt</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         NEWSLETTER
+    ══════════════════════════════════════ -->
+    <section class="bg-[linear-gradient(135deg,#ffffff_0%,#ffffff_50%,#ffffff_100%)] border-t border-b border-gold/20 py-24 text-center" id="newsletter" aria-labelledby="newsletter-title">
+      <div class="max-w-[560px] mx-auto px-6 reveal">
+        <span class="inline-block bg-gold/[0.15] border border-gold/20 text-[0.7rem] tracking-[0.25em] text-gold uppercase px-5 py-1.5 rounded-full mb-6">🎁 Exclusive Offer</span>
+
+        <h2 class="font-playfair text-[clamp(2rem,4vw,2.75rem)] font-bold leading-tight text-cream" id="newsletter-title">
+          Get <em class="text-gold not-italic italic">10% Off</em> Your First Order
+        </h2>
+        <p class="text-muted text-[0.95rem] leading-[1.7] mt-3">
+          Subscribe to our newsletter and receive exclusive deals, seasonal menus, and special event invitations.
+        </p>
+
+        <form id="newsletter-form" onsubmit="handleNewsletter(event)"
+          class="flex mt-8 border border-gold/20 rounded-full overflow-hidden bg-card focus-within:border-gold transition-colors duration-300">
+          <input
+            type="email" id="newsletter-email"
+            class="flex-1 bg-transparent border-none outline-none px-6 py-4 font-inter text-[0.9rem] text-cream placeholder:text-muted"
+            placeholder="Enter your email address..."
+            required aria-label="Email address"
+          />
+          <button type="submit" id="newsletter-submit"
+            class="bg-gold text-dark font-inter font-semibold text-[0.875rem] tracking-wider px-8 py-4 border-none cursor-pointer transition-colors duration-300 hover:bg-gold-light whitespace-nowrap">
+            Subscribe
+          </button>
+        </form>
+
+        <p class="text-[0.75rem] text-muted mt-4">🔒 No spam, ever. Unsubscribe anytime.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="bg-surface border-t border-gold/20 pt-16 pb-8 px-16" id="contact" role="contentinfo">
+
+    <div class="grid grid-cols-[2fr_1fr_1fr_1fr] gap-12 pb-12 border-b border-gold/20 max-lg:grid-cols-2 max-sm:grid-cols-1">
+
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="./img/Logo V2.png" alt="Lumière Logo" class="w-10 h-10 object-contain" />
+          <span class="font-playfair text-[1.3rem] font-bold text-gold tracking-[0.15em]">LUMIÈRE</span>
+        </div>
+        <p class="text-[0.875rem] text-muted leading-[1.8] max-w-[280px] mb-6">
+          A fine dining destination where culinary artistry meets warm hospitality. Every meal is a masterpiece.
+        </p>
+        <div class="flex gap-3">
+          <a href="#" id="social-instagram" aria-label="Instagram" class="w-9.5 h-9.5 rounded-full bg-card border border-gold/20 flex items-center justify-center text-muted cursor-pointer no-underline transition-all duration-300 hover:bg-gold hover:text-dark hover:border-gold text-base">📸</a>
+          <a href="#" id="social-facebook" aria-label="Facebook"  class="w-9.5 h-9.5 rounded-full bg-card border border-gold/20 flex items-center justify-center text-muted cursor-pointer no-underline transition-all duration-300 hover:bg-gold hover:text-dark hover:border-gold text-base">📘</a>
+          <a href="#" id="social-twitter"   aria-label="Twitter"   class="w-9.5 h-9.5 rounded-full bg-card border border-gold/20 flex items-center justify-center text-muted cursor-pointer no-underline transition-all duration-300 hover:bg-gold hover:text-dark hover:border-gold text-base">🐦</a>
+          <a href="#" id="social-youtube"   aria-label="YouTube"   class="w-9.5 h-9.5 rounded-full bg-card border border-gold/20 flex items-center justify-center text-muted cursor-pointer no-underline transition-all duration-300 hover:bg-gold hover:text-dark hover:border-gold text-base">▶️</a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-playfair text-[1rem] font-semibold text-cream mb-5">Quick Links</h3>
+        <ul class="list-none m-0 p-0 flex flex-col gap-2.5">
+          <li><a href="./Home.html" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">Home</a></li>
+          <li><a href="./Menu.html" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">Our Menu</a></li>
+          <li><a href="./Event.html" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">Events</a></li>
+          <li><a href="#" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">About Us</a></li>
+          <li><a href="#" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">Gallery</a></li>
         </ul>
       </div>
-      </nav>
-    
 
-    <!-- Main -->
-    <main>
-      <!-- Hero Section -->
-      <section class="hero">
-        <h1>Hero Section</h1>
-      </section>
+      <!-- Dining -->
+      <div>
+        <h3 class="font-playfair text-[1rem] font-semibold text-cream mb-5">Dining</h3>
+        <ul class="list-none m-0 p-0 flex flex-col gap-2.5">
+          <li><a href="#" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">Reservations</a></li>
+          <li><a href="#" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">Private Dining</a></li>
+          <li><a href="#" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">Wine Cellar</a></li>
+          <li><a href="#" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">Chef's Table</a></li>
+          <li><a href="#" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">Gift Cards</a></li>
+        </ul>
+      </div>
 
+      <!-- Contact -->
+      <div>
+        <h3 class="font-playfair text-[1rem] font-semibold text-cream mb-5">Contact</h3>
+        <ul class="list-none m-0 p-0 flex flex-col gap-2.5">
+          <li><a href="tel:+855123456789" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">☎ +855 123 456 789</a></li>
+          <li><a href="mailto:@example.com" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">✉ @example.com</a></li>
+          <li><a href="#" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">📍 Phnom Penh, Cambodia</a></li>
+          <li><a href="#" class="text-[0.875rem] text-muted no-underline transition-colors duration-300 hover:text-gold">🕐 Mon–Sun: 5pm – 11pm</a></li>
+        </ul>
+      </div>
 
+    </div>
 
+    <!-- Bottom bar -->
+    <div class="flex justify-between items-center pt-8 flex-wrap gap-4">
+      <p class="text-[0.8rem] text-muted">© 2026 <span class="text-gold">LUMIÈRE</span>. Group 4.</p>
+      <p class="text-[0.8rem] text-muted flex gap-4">
+        <a href="#" class="text-muted no-underline transition-colors duration-300 hover:text-gold">Privacy Policy</a>
+        <span>·</span>
+        <a href="#" class="text-muted no-underline transition-colors duration-300 hover:text-gold">Terms of Service</a>
+      </p>
+    </div>
 
+  </footer>
 
+  <script>
+    // ── Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('navbar-scrolled', window.scrollY > 60);
+    });
 
+    // ── Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // ── Animated counters
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.count);
+      let current = 0;
+      const step = target / (1800 / 16);
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = target >= 1000
+          ? Math.floor(current).toLocaleString() + '+'
+          : Math.floor(current) + '+';
+      }, 16);
+    }
 
+    const statsObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('[data-count]').forEach(animateCounter);
+          statsObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    statsObs.observe(document.getElementById('stats'));
 
+    // ── Newsletter
+    function handleNewsletter(e) {
+      e.preventDefault();
+      const btn = document.getElementById('newsletter-submit');
+      btn.textContent = '🎉 Subscribed!';
+      btn.style.background = '#2ecc71';
+      setTimeout(() => {
+        btn.textContent = 'Subscribe';
+        btn.style.background = '';
+        document.getElementById('newsletter-email').value = '';
+      }, 3000);
+    }
+  </script>
 
-
-
-
-
-
-
-  </body>
+</body>
 </html>
