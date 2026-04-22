@@ -1,182 +1,215 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login System</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login System</title>
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="min-h-screen flex flex-col bg-gradient-to-r from-green-400 to-green-800">
-  <!-- Navbar -->
-  <header class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-      <a href="index.html" class="flex items-center">
-        <img src="logo.png" alt="Khmer Taste Logo" class="h-14 md:h-16 w-auto object-contain" />
-      </a>
-
-      <nav class="hidden md:flex items-center space-x-8 font-medium">
-        <a href="index.html" class="text-green-700 hover:text-orange-500 transition">Home</a>
-        <a href="Menu.html" class="hover:text-orange-500 transition">Menu</a>
-        <a href="Contact.html" class="hover:text-orange-500 transition">Contact</a>
-        <a href="Event.html" class="hover:text-orange-500 transition">Event</a>
-        <a href="Login.html" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
-          Login
+  <body
+    class="min-h-screen flex flex-col bg-gradient-to-r from-green-400 to-green-800"
+  >
+    <!-- Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+      <div
+        class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4"
+      >
+        <a href="index.html" class="flex items-center">
+          <img
+            src="logo.png"
+            alt="Khmer Taste Logo"
+            class="h-14 md:h-16 w-auto object-contain"
+          />
         </a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- Center Content -->
-  <main class="flex-1 flex items-center justify-center px-4 py-8">
-    <div class="bg-white p-8 rounded-2xl shadow-xl w-80">
-      <h1 id="title" class="text-2xl font-bold text-center text-blue-400 mb-6">
-        Login
-      </h1>
+        <nav class="hidden md:flex items-center space-x-8 font-medium">
+          <a
+            href="index.html"
+            class="text-green-700 hover:text-orange-500 transition"
+            >Home</a
+          >
+          <a href="Menu.html" class="hover:text-orange-500 transition">Menu</a>
+          <a href="Contact.html" class="hover:text-orange-500 transition"
+            >Contact</a
+          >
+          <a href="Event.html" class="hover:text-orange-500 transition"
+            >Event</a
+          >
+          <a
+            href="Login.html"
+            class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition"
+          >
+            Login
+          </a>
+        </nav>
+      </div>
+    </header>
 
-      <!-- Error -->
-      <p id="msg" class="text-red-500 text-sm text-center hidden"></p>
+    <!-- Center Content -->
+    <main class="flex-1 flex items-center justify-center px-4 py-8">
+      <div class="bg-white p-8 rounded-2xl shadow-xl w-80">
+        <h1
+          id="title"
+          class="text-2xl font-bold text-center text-blue-400 mb-6"
+        >
+          Login
+        </h1>
 
-      <!-- Username -->
-      <input id="username" type="text" placeholder="Username"
-        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400" />
+        <!-- Error -->
+        <p id="msg" class="text-red-500 text-sm text-center hidden"></p>
 
-      <!-- Password -->
-      <input id="password" type="password" placeholder="Password"
-        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400" />
+        <!-- Username -->
+        <input
+          id="username"
+          type="text"
+          placeholder="Username"
+          class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
+        />
 
-      <!-- Confirm Password -->
-      <input id="confirmPassword" type="password" placeholder="Confirm Password"
-        class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400 hidden" />
+        <!-- Password -->
+        <input
+          id="password"
+          type="password"
+          placeholder="Password"
+          class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
+        />
 
-      <!-- Button -->
-      <button onclick="handleAction()" class="w-full bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-300">
-        <a href="index.html">submit</a>
-      </button>
+        <!-- Confirm Password -->
+        <input
+          id="confirmPassword"
+          type="password"
+          placeholder="Confirm Password"
+          class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400 hidden"
+        />
 
-      <!-- Switch -->
-      <p class="text-sm text-center mt-4">
-        <span id="switchText">Don't have an account?</span>
-        <a href="#" onclick="toggleMode()" class="text-blue-400 font-bold">Register</a>
-      </p>
-    </div>
-  </main>
+        <!-- Button -->
+        <button
+          onclick="handleAction()"
+          class="w-full bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-300"
+        >
+          <a href="index.html">submit</a>
+        </button>
 
-  <script>
-    let isLogin = true;
-
-    function toggleMode() {
-      isLogin = !isLogin;
-
-      document.getElementById("title").textContent = isLogin
-        ? "Login"
-        : "Register";
-      document.getElementById("switchText").textContent = isLogin
-        ? "Don't have an account?"
-        : "Already have an account?";
-
-      // Show/hide confirm password
-      document.getElementById("confirmPassword").classList.toggle("hidden");
-    }
-
-    function handleAction() {
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const confirmPassword = document
-        .getElementById("confirmPassword")
-        .value.trim();
-      const msg = document.getElementById("msg");
-
-      msg.classList.add("hidden");
-
-      if (username === "" || password === "") {
-        showMsg("Please fill all fields!");
-        return;
-      }
-
-      let users = JSON.parse(localStorage.getItem("users")) || [];
-
-      if (isLogin) {
-        // LOGIN
-        const user = users.find(
-          (u) => u.username === username && u.password === password,
-        );
-
-        // if(user) {
-        //     alert("✅ Login successful!");
-        //     window.location.href = "menu.html";
-        // } else {
-        //     showMsg("❌ Invalid username or password!");
-        // }
-      } else {
-        // REGISTER
-        if (confirmPassword === "") {
-          showMsg("Please confirm your password!");
-          return;
-        }
-
-        if (password !== confirmPassword) {
-          showMsg("❌ Passwords do not match!");
-          return;
-        }
-
-        const exists = users.find((u) => u.username === username);
-
-        if (exists) {
-          showMsg("⚠ Username already exists!");
-          return;
-        }
-
-        users.push({ username, password });
-        localStorage.setItem("users", JSON.stringify(users));
-
-        alert("✅ Register successful! Now login.");
-        toggleMode();
-      }
-    }
-
-    function showMsg(text) {
-      const msg = document.getElementById("msg");
-      msg.textContent = text;
-      msg.classList.remove("hidden");
-    }
-  </script>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-300 py-8 mt-auto">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-      <div>
-        <img src="logo.png" alt="Khmer Taste Logo" class="h-10 mb-3" />
-        <p class="text-sm">
-          Authentic Cambodian cuisine with fresh ingredients and warm hospitality.
+        <!-- Switch -->
+        <p class="text-sm text-center mt-4">
+          <span id="switchText">Don't have an account?</span>
+          <a href="#" onclick="toggleMode()" class="text-blue-400 font-bold"
+            >Register</a
+          >
         </p>
       </div>
+    </main>
 
-      <div>
-        <h4 class="text-white font-semibold mb-3">Quick Links</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="index.html" class="hover:text-white">Home</a></li>
-          <li><a href="Menu.html" class="hover:text-white">Menu</a></li>
-          <li><a href="Contact.html" class="hover:text-white">Contact</a></li>
-          <li><a href="Login.html" class="hover:text-white">Login</a></li>
-        </ul>
+    <script>
+      let isLogin = true;
+
+      function toggleMode() {
+        isLogin = !isLogin;
+
+        document.getElementById("title").textContent = isLogin
+          ? "Login"
+          : "Register";
+        document.getElementById("switchText").textContent = isLogin
+          ? "Don't have an account?"
+          : "Already have an account?";
+
+        // Show/hide confirm password
+        document.getElementById("confirmPassword").classList.toggle("hidden");
+      }
+
+      function handleAction() {
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value.trim();
+        const confirmPassword = document
+          .getElementById("confirmPassword")
+          .value.trim();
+        const msg = document.getElementById("msg");
+
+        msg.classList.add("hidden");
+
+        if (username === "" || password === "") {
+          showMsg("Please fill all fields!");
+          return;
+        }
+
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        if (isLogin) {
+          // LOGIN
+          const user = users.find(
+            (u) => u.username === username && u.password === password,
+          );
+        } else {
+          // REGISTER
+          if (confirmPassword === "") {
+            showMsg("Please confirm your password!");
+            return;
+          }
+
+          if (password !== confirmPassword) {
+            showMsg("❌ Passwords do not match!");
+            return;
+          }
+
+          const exists = users.find((u) => u.username === username);
+
+          if (exists) {
+            showMsg("⚠ Username already exists!");
+            return;
+          }
+
+          users.push({ username, password });
+          localStorage.setItem("users", JSON.stringify(users));
+
+          alert("✅ Register successful! Now login.");
+          toggleMode();
+        }
+      }
+
+      function showMsg(text) {
+        const msg = document.getElementById("msg");
+        msg.textContent = text;
+        msg.classList.remove("hidden");
+      }
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8 mt-auto">
+      <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+        <div>
+          <img src="logo.png" alt="Khmer Taste Logo" class="h-10 mb-3" />
+          <p class="text-sm">
+            Authentic Cambodian cuisine with fresh ingredients and warm
+            hospitality.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-3">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="hover:text-white">Home</a></li>
+            <li><a href="Menu.html" class="hover:text-white">Menu</a></li>
+            <li><a href="Contact.html" class="hover:text-white">Contact</a></li>
+            <li><a href="Login.html" class="hover:text-white">Login</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-3">Contact</h4>
+          <p class="text-sm">Phnom Penh, Cambodia</p>
+          <p class="text-sm">+855 12 345 678</p>
+          <p class="text-sm">info@khmertaste.com</p>
+        </div>
       </div>
 
-      <div>
-        <h4 class="text-white font-semibold mb-3">Contact</h4>
-        <p class="text-sm">Phnom Penh, Cambodia</p>
-        <p class="text-sm">+855 12 345 678</p>
-        <p class="text-sm">info@khmertaste.com</p>
+      <div
+        class="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-400"
+      >
+        © 2026 Khmer Taste Restaurant. All rights reserved.
       </div>
-    </div>
-
-    <div class="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-400">
-      © 2026 Khmer Taste Restaurant. All rights reserved.
-    </div>
-  </footer>
-</body>
-
+    </footer>
+  </body>
 </html>
