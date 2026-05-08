@@ -30,19 +30,16 @@
   <header class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-4">
 
-      <!-- Logo -->
       <a href="index.html" class="flex items-center">
         <img src="logo.png" alt="Khmer Taste Logo" class="h-14 md:h-16 w-auto object-contain">
       </a>
 
-      <!-- Desktop Nav -->
       <nav class="hidden md:flex items-center space-x-6 font-medium">
         <a href="index.html" class="text-green-700 dark:text-green-400 hover:text-orange-500 transition">Home</a>
         <a href="Menu.html" class="hover:text-orange-500 transition">Menu</a>
         <a href="Contact.html" class="hover:text-orange-500 transition">Contact</a>
         <a href="Event.html" class="hover:text-orange-500 transition">Event</a>
 
-        <!-- Theme Dropdown -->
         <div class="relative" id="themeDropdown">
           <button
             type="button"
@@ -86,7 +83,6 @@
         </a>
       </nav>
 
-      <!-- Mobile Menu Button -->
       <button
         type="button"
         onclick="openMobileMenu()"
@@ -97,7 +93,6 @@
     </div>
   </header>
 
-  <!-- Mobile Sidebar Overlay -->
   <div
     id="mobileOverlay"
     class="fixed inset-0 bg-black/40 z-[60] hidden md:hidden"
@@ -162,8 +157,6 @@
   </aside>
 
   
-
-<!-- Center Content -->
     <main class="flex-1 flex items-center justify-center px-4 py-8">
       <div class="bg-white p-8 rounded-2xl shadow-xl w-80">
         <h1
@@ -173,10 +166,10 @@
           Login
         </h1>
 
-        <!-- Error -->
+
         <p id="msg" class="text-red-500 text-sm text-center hidden"></p>
 
-        <!-- Username -->
+
         <input
           id="username"
           type="text"
@@ -184,7 +177,6 @@
           class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
         />
 
-        <!-- Password -->
         <input
           id="password"
           type="password"
@@ -192,7 +184,6 @@
           class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
         />
 
-        <!-- Confirm Password -->
         <input
           id="confirmPassword"
           type="password"
@@ -200,7 +191,6 @@
           class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400 hidden"
         />
 
-        <!-- Button -->
         <button
           onclick="handleAction()"
           class="w-full bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-300"
@@ -208,7 +198,6 @@
           <a href="index.html">submit</a>
         </button>
 
-        <!-- Switch -->
         <p class="text-sm text-center mt-4">
           <span id="switchText">Don't have an account?</span>
           <a href="#" onclick="toggleMode()" class="text-blue-400 font-bold"
