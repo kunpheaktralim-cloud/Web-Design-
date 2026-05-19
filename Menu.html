@@ -13,7 +13,7 @@
 
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
+    <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
@@ -26,6 +26,56 @@
         }
       }
     }
+  </script>
+</head>
+
+<body>
+
+  <!-- your page content -->
+
+  <!-- EXISTING scripts -->
+  <script>
+    // theme script
+  </script>
+
+  <!-- ADD THIS BELOW -->
+  <script>
+    function updateAuthUI() {
+      const user = localStorage.getItem("loggedInUser");
+
+      const authHTML = user
+        ? `
+          <div class="flex items-center gap-3">
+            <span class="font-medium text-green-600 dark:text-green-400">
+              ${user}
+            </span>
+
+            <button
+              onclick="logout()"
+              class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+            >
+              Logout
+            </button>
+          </div>
+        `
+        : `
+          <a href="Login.html"
+            class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
+            Login
+          </a>
+        `;
+
+      document.querySelectorAll(".authSection").forEach(el => {
+        el.innerHTML = authHTML;
+      });
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedInUser");
+      window.location.reload();
+    }
+
+    updateAuthUI();
   </script>
 </head>
 
@@ -72,9 +122,7 @@
           </div>
         </div>
 
-        <a href="Login.html" class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
-          Login
-        </a>
+        <div class="authSection"></div>
       </nav>
 
       <button type="button" onclick="openMobileMenu()"
@@ -126,9 +174,7 @@
         </div>
       </div>
 
-      <a href="Login.html"
-        class="block text-center mt-4 bg-orange-500 text-white px-4 py-3 rounded-lg hover:bg-orange-600 transition">
-        Login
+      <div class="authSection mt-4"></div>
       </a>
     </div>
   </aside>
@@ -1184,66 +1230,113 @@
     </div>
   </footer>
 
-  <script>
-    const themeMenu = document.getElementById("themeMenu");
-    const themeText = document.getElementById("themeText");
-    const themeDropdown = document.getElementById("themeDropdown");
-    const mobileSidebar = document.getElementById("mobileSidebar");
-    const mobileOverlay = document.getElementById("mobileOverlay");
+<script>
+  const themeMenu = document.getElementById("themeMenu");
+  const themeText = document.getElementById("themeText");
+  const themeDropdown = document.getElementById("themeDropdown");
+  const mobileSidebar = document.getElementById("mobileSidebar");
+  const mobileOverlay = document.getElementById("mobileOverlay");
 
-    function toggleThemeMenu() {
-      themeMenu.classList.toggle("hidden");
-    }
+  function toggleThemeMenu() {
+    themeMenu.classList.toggle("hidden");
+  }
 
-    function updateThemeButtonIcon(iconName) {
-      const iconContainer = document.getElementById("themeIconWrapper");
-      iconContainer.innerHTML = `<i data-lucide="${iconName}" class="w-4 h-4"></i>`;
-      lucide.createIcons();
-    }
+  function updateThemeButtonIcon(iconName) {
+    const iconContainer = document.getElementById("themeIconWrapper");
 
-    function applyTheme(theme) {
-      const html = document.documentElement;
-
-      if (theme === "dark") {
-        html.classList.add("dark");
-        themeText.textContent = "Dark";
-        updateThemeButtonIcon("moon");
-      } else {
-        html.classList.remove("dark");
-        themeText.textContent = "Light";
-        updateThemeButtonIcon("sun");
-      }
-    }
-
-    function setTheme(theme) {
-      localStorage.setItem("theme", theme);
-      applyTheme(theme);
-      themeMenu.classList.add("hidden");
-    }
-
-    function openMobileMenu() {
-      mobileSidebar.classList.remove("translate-x-full");
-      mobileOverlay.classList.remove("hidden");
-      document.body.classList.add("overflow-hidden");
-    }
-
-    function closeMobileMenu() {
-      mobileSidebar.classList.add("translate-x-full");
-      mobileOverlay.classList.add("hidden");
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    const savedTheme = localStorage.getItem("theme") || "light";
-    applyTheme(savedTheme);
-
-    document.addEventListener("click", function (e) {
-      if (themeDropdown && !themeDropdown.contains(e.target)) {
-        themeMenu.classList.add("hidden");
-      }
-    });
+    iconContainer.innerHTML =
+      `<i data-lucide="${iconName}" class="w-4 h-4"></i>`;
 
     lucide.createIcons();
-  </script>
+  }
+
+  function applyTheme(theme) {
+    const html = document.documentElement;
+
+    if (theme === "dark") {
+      html.classList.add("dark");
+      themeText.textContent = "Dark";
+      updateThemeButtonIcon("moon");
+    } else {
+      html.classList.remove("dark");
+      themeText.textContent = "Light";
+      updateThemeButtonIcon("sun");
+    }
+  }
+
+  function setTheme(theme) {
+    localStorage.setItem("theme", theme);
+
+    applyTheme(theme);
+
+    themeMenu.classList.add("hidden");
+  }
+
+  function openMobileMenu() {
+    mobileSidebar.classList.remove("translate-x-full");
+    mobileOverlay.classList.remove("hidden");
+
+    document.body.classList.add("overflow-hidden");
+  }
+
+  function closeMobileMenu() {
+    mobileSidebar.classList.add("translate-x-full");
+    mobileOverlay.classList.add("hidden");
+
+    document.body.classList.remove("overflow-hidden");
+  }
+
+  const savedTheme = localStorage.getItem("theme") || "light";
+
+  applyTheme(savedTheme);
+
+  document.addEventListener("click", function (e) {
+    if (themeDropdown && !themeDropdown.contains(e.target)) {
+      themeMenu.classList.add("hidden");
+    }
+  });
+
+  // AUTH UI
+  function updateAuthUI() {
+    const user = localStorage.getItem("loggedInUser");
+
+    const authHTML = user
+      ? `
+        <div class="flex items-center gap-3">
+          <span class="font-medium text-green-600 dark:text-green-400">
+            ${user}
+          </span>
+
+          <button
+            onclick="logout()"
+            class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+          >
+            Logout
+          </button>
+        </div>
+      `
+      : `
+        <a href="Login.html"
+          class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
+          Login
+        </a>
+      `;
+
+    document.querySelectorAll(".authSection").forEach(el => {
+      el.innerHTML = authHTML;
+    });
+  }
+
+  function logout() {
+    localStorage.removeItem("loggedInUser");
+
+    window.location.reload();
+  }
+
+  updateAuthUI();
+
+  lucide.createIcons();
+</script>
 
   <!-- Ionicons -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

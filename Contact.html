@@ -78,10 +78,7 @@
           </div>
         </div>
 
-        <a href="Login.html"
-           class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
-          Login
-        </a>
+        <div class="authSection"></div>
       </nav>
 
       <button
@@ -149,10 +146,7 @@
         </div>
       </div>
 
-      <a href="Login.html"
-         class="block text-center mt-4 bg-orange-500 text-white px-4 py-3 rounded-lg hover:bg-orange-600 transition">
-        Login
-      </a>
+      <div class="authSection mt-4"></div>
     </div>
   </aside>
 
@@ -363,6 +357,47 @@
     });
 
     lucide.createIcons();
+
+      // AUTH UI
+  function updateAuthUI() {
+    const user = localStorage.getItem("loggedInUser");
+
+    const authHTML = user
+      ? `
+        <div class="flex items-center gap-3">
+          <span class="font-medium text-green-600 dark:text-green-400">
+            ${user}
+          </span>
+
+          <button
+            onclick="logout()"
+            class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+          >
+            Logout
+          </button>
+        </div>
+      `
+      : `
+        <a href="Login.html"
+          class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
+          Login
+        </a>
+      `;
+
+    document.querySelectorAll(".authSection").forEach(el => {
+      el.innerHTML = authHTML;
+    });
+  }
+
+  function logout() {
+    localStorage.removeItem("loggedInUser");
+
+    window.location.reload();
+  }
+
+  updateAuthUI();
+
+  lucide.createIcons();
   </script>
 </body>
 </html>

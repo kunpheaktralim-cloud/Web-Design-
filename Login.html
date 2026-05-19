@@ -1,377 +1,454 @@
 <!doctype html>
 <html lang="en" class="">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login System</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login System</title>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              primary: "#2E7D32",
-              accent: "#FF7A00",
-              soft: "#FFF8F1"
-            }
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: "#2E7D32",
+            accent: "#FF7A00",
+            soft: "#FFF8F1"
           }
         }
       }
-    </script>
-  </head>
+    }
+  </script>
+</head>
 
-  <body class="min-h-screen flex flex-col bg-gradient-to-r from-green-400 to-green-800 dark:from-gray-950 dark:to-gray-900 text-gray-800 dark:text-gray-100">
+<body class="min-h-screen flex flex-col bg-gradient-to-r from-green-400 to-green-800 dark:from-gray-950 dark:to-gray-900 text-gray-800 dark:text-gray-100">
 
+<!-- Header -->
+<header class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-4">
 
-  <!-- Header -->
-  <header class="bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-6 py-4">
+    <a href="index.html" class="flex items-center">
+      <img src="logo.png" alt="Khmer Taste Logo" class="h-14 md:h-16 w-auto object-contain">
+    </a>
 
-      <a href="index.html" class="flex items-center">
-        <img src="logo.png" alt="Khmer Taste Logo" class="h-14 md:h-16 w-auto object-contain">
-      </a>
+    <nav class="hidden md:flex items-center space-x-6 font-medium">
+      <a href="index.html" class="text-green-700 dark:text-green-400 hover:text-orange-500 transition">Home</a>
+      <a href="Menu.html" class="hover:text-orange-500 transition">Menu</a>
+      <a href="Contact.html" class="hover:text-orange-500 transition">Contact</a>
+      <a href="Event.html" class="hover:text-orange-500 transition">Event</a>
 
-      <nav class="hidden md:flex items-center space-x-6 font-medium">
-        <a href="index.html" class="text-green-700 dark:text-green-400 hover:text-orange-500 transition">Home</a>
-        <a href="Menu.html" class="hover:text-orange-500 transition">Menu</a>
-        <a href="Contact.html" class="hover:text-orange-500 transition">Contact</a>
-        <a href="Event.html" class="hover:text-orange-500 transition">Event</a>
-
-        <div class="relative" id="themeDropdown">
-          <button
-            type="button"
-            onclick="toggleThemeMenu()"
-            class="flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-100 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800"
-          >
-            <span id="themeIconWrapper">
-              <i data-lucide="sun" class="w-4 h-4"></i>
-            </span>
-            <span id="themeText">Light</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500 dark:text-gray-300"></i>
-          </button>
-
-          <div
-            id="themeMenu"
-            class="hidden absolute right-0 top-full mt-2 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 py-2 shadow-xl z-50"
-          >
-            <button
-              type="button"
-              onclick="setTheme('light')"
-              class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800"
-            >
-              <i data-lucide="sun" class="w-4 h-4"></i>
-              <span>Light</span>
-            </button>
-
-            <button
-              type="button"
-              onclick="setTheme('dark')"
-              class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800"
-            >
-              <i data-lucide="moon" class="w-4 h-4"></i>
-              <span>Dark</span>
-            </button>
-          </div>
-        </div>
-
-        <a href="Login.html"
-           class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
-          Login
-        </a>
-      </nav>
-
-      <button
-        type="button"
-        onclick="openMobileMenu()"
-        class="md:hidden flex items-center justify-center w-14 h-14 rounded-none bg-[#1c1f24] text-white"
-      >
-        <i data-lucide="menu" class="w-7 h-7"></i>
-      </button>
-    </div>
-  </header>
-
-  <div
-    id="mobileOverlay"
-    class="fixed inset-0 bg-black/40 z-[60] hidden md:hidden"
-    onclick="closeMobileMenu()"
-  ></div>
-
-  <!-- Mobile Sidebar -->
-  <aside
-    id="mobileSidebar"
-    class="fixed top-0 right-0 h-full w-72 bg-white dark:bg-gray-900 shadow-2xl z-[70] translate-x-full transition-transform duration-300 md:hidden"
-  >
-    <div class="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-800">
-      <img src="logo.png" alt="Khmer Taste Logo" class="h-12 w-auto object-contain">
-      <button
-        type="button"
-        onclick="closeMobileMenu()"
-        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
-      >
-        <i data-lucide="x" class="w-6 h-6"></i>
-      </button>
-    </div>
-
-    <div class="p-5 space-y-3 font-medium">
-      <a href="index.html" class="block rounded-lg px-3 py-3 text-green-700 dark:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800">
-        Home
-      </a>
-      <a href="Menu.html" class="block rounded-lg px-3 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
-        Menu
-      </a>
-      <a href="Contact.html" class="block rounded-lg px-3 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
-        Contact
-      </a>
-      <a href="Event.html" class="block rounded-lg px-3 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
-        Event
-      </a>
-
-      <div class="pt-3 border-t border-gray-200 dark:border-gray-800">
-        <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Theme</p>
-        <div class="grid grid-cols-2 gap-2">
-          <button
-            onclick="setTheme('light')"
-            class="flex items-center justify-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-3 hover:bg-gray-50 dark:hover:bg-gray-800"
-          >
-            <i data-lucide="sun" class="w-4 h-4"></i>
-            Light
-          </button>
-          <button
-            onclick="setTheme('dark')"
-            class="flex items-center justify-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-3 hover:bg-gray-50 dark:hover:bg-gray-800"
-          >
-            <i data-lucide="moon" class="w-4 h-4"></i>
-            Dark
-          </button>
-        </div>
-      </div>
-
-      <a href="Login.html"
-         class="block text-center mt-4 bg-orange-500 text-white px-4 py-3 rounded-lg hover:bg-orange-600 transition">
-        Login
-      </a>
-    </div>
-  </aside>
-
-  
-    <main class="flex-1 flex items-center justify-center px-4 py-8">
-      <div class="bg-white p-8 rounded-2xl shadow-xl w-80">
-        <h1
-          id="title"
-          class="text-2xl font-bold text-center text-blue-400 mb-6"
-        >
-          Login
-        </h1>
-
-
-        <p id="msg" class="text-red-500 text-sm text-center hidden"></p>
-
-
-        <input
-          id="username"
-          type="text"
-          placeholder="Username"
-          class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
-        />
-
-        <input
-          id="password"
-          type="password"
-          placeholder="Password"
-          class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400"
-        />
-
-        <input
-          id="confirmPassword"
-          type="password"
-          placeholder="Confirm Password"
-          class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400 hidden"
-        />
-
+      <!-- Theme -->
+      <div class="relative" id="themeDropdown">
         <button
-          onclick="handleAction()"
-          class="w-full bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-300"
+          type="button"
+          onclick="toggleThemeMenu()"
+          class="flex items-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-100 shadow-sm hover:bg-gray-50 dark:hover:bg-gray-800"
         >
-          <a href="index.html">submit</a>
+          <span id="themeIconWrapper">
+            <i data-lucide="sun" class="w-4 h-4"></i>
+          </span>
+
+          <span id="themeText">Light</span>
+
+          <i data-lucide="chevron-down" class="w-4 h-4 text-gray-500 dark:text-gray-300"></i>
         </button>
 
-        <p class="text-sm text-center mt-4">
-          <span id="switchText">Don't have an account?</span>
-          <a href="#" onclick="toggleMode()" class="text-blue-400 font-bold"
-            >Register</a
+        <div
+          id="themeMenu"
+          class="hidden absolute right-0 top-full mt-2 w-44 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 py-2 shadow-xl z-50"
+        >
+          <button
+            type="button"
+            onclick="setTheme('light')"
+            class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800"
           >
-        </p>
+            <i data-lucide="sun" class="w-4 h-4"></i>
+            <span>Light</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="setTheme('dark')"
+            class="flex w-full items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800"
+          >
+            <i data-lucide="moon" class="w-4 h-4"></i>
+            <span>Dark</span>
+          </button>
+        </div>
       </div>
-    </main>
 
+      <!-- Desktop Auth -->
+      <div class="authSection"></div>
+    </nav>
+
+    <button
+      type="button"
+      onclick="openMobileMenu()"
+      class="md:hidden flex items-center justify-center w-14 h-14 rounded-none bg-[#1c1f24] text-white"
+    >
+      <i data-lucide="menu" class="w-7 h-7"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Overlay -->
+<div
+  id="mobileOverlay"
+  class="fixed inset-0 bg-black/40 z-[60] hidden md:hidden"
+  onclick="closeMobileMenu()"
+></div>
+
+<!-- Mobile Sidebar -->
+<aside
+  id="mobileSidebar"
+  class="fixed top-0 right-0 h-full w-72 bg-white dark:bg-gray-900 shadow-2xl z-[70] translate-x-full transition-transform duration-300 md:hidden"
+>
+  <div class="flex items-center justify-between px-5 py-4 border-b border-gray-200 dark:border-gray-800">
+    <img src="logo.png" alt="Khmer Taste Logo" class="h-12 w-auto object-contain">
+
+    <button
+      type="button"
+      onclick="closeMobileMenu()"
+      class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+    >
+      <i data-lucide="x" class="w-6 h-6"></i>
+    </button>
+  </div>
+
+  <div class="p-5 space-y-3 font-medium">
+    <a href="index.html" class="block rounded-lg px-3 py-3 text-green-700 dark:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800">
+      Home
+    </a>
+
+    <a href="Menu.html" class="block rounded-lg px-3 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
+      Menu
+    </a>
+
+    <a href="Contact.html" class="block rounded-lg px-3 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
+      Contact
+    </a>
+
+    <a href="Event.html" class="block rounded-lg px-3 py-3 hover:bg-gray-100 dark:hover:bg-gray-800">
+      Event
+    </a>
+
+    <div class="pt-3 border-t border-gray-200 dark:border-gray-800">
+      <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Theme</p>
+
+      <div class="grid grid-cols-2 gap-2">
+        <button
+          onclick="setTheme('light')"
+          class="flex items-center justify-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-3 hover:bg-gray-50 dark:hover:bg-gray-800"
+        >
+          <i data-lucide="sun" class="w-4 h-4"></i>
+          Light
+        </button>
+
+        <button
+          onclick="setTheme('dark')"
+          class="flex items-center justify-center gap-2 rounded-lg border border-gray-200 dark:border-gray-700 px-3 py-3 hover:bg-gray-50 dark:hover:bg-gray-800"
+        >
+          <i data-lucide="moon" class="w-4 h-4"></i>
+          Dark
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Auth -->
+    <div class="authSection mt-4"></div>
+  </div>
+</aside>
+
+<!-- Main -->
+<main class="flex-1 flex items-center justify-center px-4 py-8">
+  <div class="bg-white p-8 rounded-2xl shadow-xl w-80">
+
+    <h1
+      id="title"
+      class="text-2xl font-bold text-center text-blue-400 mb-6"
+    >
+      Login
+    </h1>
+
+    <p id="msg" class="text-red-500 text-sm text-center hidden"></p>
+
+    <input
+      id="username"
+      type="text"
+      placeholder="Username"
+      class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400 text-black"
+    />
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Password"
+      class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400 text-black"
+    />
+
+    <input
+      id="confirmPassword"
+      type="password"
+      placeholder="Confirm Password"
+      class="w-full p-3 border rounded-lg mb-3 focus:ring-2 focus:ring-green-400 hidden text-black"
+    />
+
+    <button
+      onclick="handleAction()"
+      class="w-full bg-blue-400 text-white p-3 rounded-lg hover:bg-blue-300"
+    >
+      Submit
+    </button>
+
+    <p class="text-sm text-center mt-4 text-black">
+      <span id="switchText">Don't have an account?</span>
+
+      <a href="#" onclick="toggleMode()" class="text-blue-400 font-bold">
+        Register
+      </a>
+    </p>
+
+  </div>
+</main>
+
+<!-- Login/Register Script -->
 <script>
-      let isLogin = true;
+  let isLogin = true;
 
-      function toggleMode() {
-        isLogin = !isLogin;
+  function toggleMode() {
+    isLogin = !isLogin;
 
-        document.getElementById("title").textContent = isLogin
-          ? "Login"
-          : "Register";
-        document.getElementById("switchText").textContent = isLogin
-          ? "Don't have an account?"
-          : "Already have an account?";
+    document.getElementById("title").textContent = isLogin
+      ? "Login"
+      : "Register";
 
-        // Show/hide confirm password
-        document.getElementById("confirmPassword").classList.toggle("hidden");
+    document.getElementById("switchText").textContent = isLogin
+      ? "Don't have an account?"
+      : "Already have an account?";
+
+    document.getElementById("confirmPassword").classList.toggle("hidden");
+  }
+
+  function handleAction() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+    const msg = document.getElementById("msg");
+
+    msg.classList.add("hidden");
+
+    if (username === "" || password === "") {
+      showMsg("Please fill all fields!");
+      return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (isLogin) {
+
+      // LOGIN
+      const user = users.find(
+        (u) => u.username === username && u.password === password
+      );
+
+      if (!user) {
+        showMsg("❌ Invalid username or password!");
+        return;
       }
 
-      function handleAction() {
-        const username = document.getElementById("username").value.trim();
-        const password = document.getElementById("password").value.trim();
-        const confirmPassword = document
-          .getElementById("confirmPassword")
-          .value.trim();
-        const msg = document.getElementById("msg");
+      localStorage.setItem("loggedInUser", username);
 
-        msg.classList.add("hidden");
+      alert("✅ Login successful!");
 
-        if (username === "" || password === "") {
-          showMsg("Please fill all fields!");
-          return;
-        }
+      window.location.href = "index.html";
 
-        let users = JSON.parse(localStorage.getItem("users")) || [];
+    } else {
 
-        if (isLogin) {
-          // LOGIN
-          const user = users.find(
-            (u) => u.username === username && u.password === password,
-          );
-        } else {
-          // REGISTER
-          if (confirmPassword === "") {
-            showMsg("Please confirm your password!");
-            return;
-          }
-
-          if (password !== confirmPassword) {
-            showMsg("❌ Passwords do not match!");
-            return;
-          }
-
-          const exists = users.find((u) => u.username === username);
-
-          if (exists) {
-            showMsg("⚠ Username already exists!");
-            return;
-          }
-
-          users.push({ username, password });
-          localStorage.setItem("users", JSON.stringify(users));
-
-          alert("✅ Register successful! Now login.");
-          toggleMode();
-        }
+      // REGISTER
+      if (confirmPassword === "") {
+        showMsg("Please confirm your password!");
+        return;
       }
 
-      function showMsg(text) {
-        const msg = document.getElementById("msg");
-        msg.textContent = text;
-        msg.classList.remove("hidden");
+      if (password !== confirmPassword) {
+        showMsg("❌ Passwords do not match!");
+        return;
       }
-    </script>
+
+      const exists = users.find((u) => u.username === username);
+
+      if (exists) {
+        showMsg("⚠ Username already exists!");
+        return;
+      }
+
+      users.push({ username, password });
+
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert("✅ Register successful! Now login.");
+
+      toggleMode();
+    }
+  }
+
+  function showMsg(text) {
+    const msg = document.getElementById("msg");
+
+    msg.textContent = text;
+
+    msg.classList.remove("hidden");
+  }
+</script>
 
 <!-- Footer -->
-  <footer class="bg-gray-900 dark:bg-black text-gray-300 py-8">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
-      <div>
-        <img src="logo.png" alt="Khmer Taste Logo" class="h-10 mb-3">
-        <p class="text-sm">
-          Authentic Cambodian cuisine with fresh ingredients and warm hospitality.
-        </p>
-      </div>
+<footer class="bg-gray-900 dark:bg-black text-gray-300 py-8">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
 
-      <div>
-        <h4 class="text-white font-semibold mb-3">Quick Links</h4>
-        <ul class="space-y-2 text-sm">
-          <li><a href="index.html" class="hover:text-white">Home</a></li>
-          <li><a href="Menu.html" class="hover:text-white">Menu</a></li>
-          <li><a href="Contact.html" class="hover:text-white">Contact</a></li>
-          <li><a href="Login.html" class="hover:text-white">Login</a></li>
-        </ul>
-      </div>
+    <div>
+      <img src="logo.png" alt="Khmer Taste Logo" class="h-10 mb-3">
 
-      <div>
-        <h4 class="text-white font-semibold mb-3">Contact</h4>
-        <p class="text-sm">Phnom Penh, Cambodia</p>
-        <p class="text-sm">+855 12 345 678</p>
-        <p class="text-sm">info@khmertaste.com</p>
-      </div>
+      <p class="text-sm">
+        Authentic Cambodian cuisine with fresh ingredients and warm hospitality.
+      </p>
     </div>
 
-    <div class="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-400">
-      © 2026 Khmer Taste Restaurant. All rights reserved.
-    </div>
-  </footer>
+    <div>
+      <h4 class="text-white font-semibold mb-3">Quick Links</h4>
 
+      <ul class="space-y-2 text-sm">
+        <li><a href="index.html" class="hover:text-white">Home</a></li>
+        <li><a href="Menu.html" class="hover:text-white">Menu</a></li>
+        <li><a href="Contact.html" class="hover:text-white">Contact</a></li>
+        <li><a href="Login.html" class="hover:text-white">Login</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-white font-semibold mb-3">Contact</h4>
+
+      <p class="text-sm">Phnom Penh, Cambodia</p>
+      <p class="text-sm">+855 12 345 678</p>
+      <p class="text-sm">info@khmertaste.com</p>
+    </div>
+  </div>
+
+  <div class="border-t border-gray-700 mt-8 pt-4 text-center text-sm text-gray-400">
+    © 2026 Khmer Taste Restaurant. All rights reserved.
+  </div>
+</footer>
+
+<!-- Theme + Mobile + Auth -->
 <script>
-    const themeMenu = document.getElementById("themeMenu");
-    const themeText = document.getElementById("themeText");
-    const themeDropdown = document.getElementById("themeDropdown");
-    const mobileSidebar = document.getElementById("mobileSidebar");
-    const mobileOverlay = document.getElementById("mobileOverlay");
+  const themeMenu = document.getElementById("themeMenu");
+  const themeText = document.getElementById("themeText");
+  const themeDropdown = document.getElementById("themeDropdown");
+  const mobileSidebar = document.getElementById("mobileSidebar");
+  const mobileOverlay = document.getElementById("mobileOverlay");
 
-    function toggleThemeMenu() {
-      themeMenu.classList.toggle("hidden");
-    }
+  function toggleThemeMenu() {
+    themeMenu.classList.toggle("hidden");
+  }
 
-    function updateThemeButtonIcon(iconName) {
-      const iconContainer = document.getElementById("themeIconWrapper");
-      iconContainer.innerHTML = `<i data-lucide="${iconName}" class="w-4 h-4"></i>`;
-      lucide.createIcons();
-    }
+  function updateThemeButtonIcon(iconName) {
+    const iconContainer = document.getElementById("themeIconWrapper");
 
-    function applyTheme(theme) {
-      const html = document.documentElement;
-
-      if (theme === "dark") {
-        html.classList.add("dark");
-        themeText.textContent = "Dark";
-        updateThemeButtonIcon("moon");
-      } else {
-        html.classList.remove("dark");
-        themeText.textContent = "Light";
-        updateThemeButtonIcon("sun");
-      }
-    }
-
-    function setTheme(theme) {
-      localStorage.setItem("theme", theme);
-      applyTheme(theme);
-      themeMenu.classList.add("hidden");
-    }
-
-    function openMobileMenu() {
-      mobileSidebar.classList.remove("translate-x-full");
-      mobileOverlay.classList.remove("hidden");
-      document.body.classList.add("overflow-hidden");
-    }
-
-    function closeMobileMenu() {
-      mobileSidebar.classList.add("translate-x-full");
-      mobileOverlay.classList.add("hidden");
-      document.body.classList.remove("overflow-hidden");
-    }
-
-    const savedTheme = localStorage.getItem("theme") || "light";
-    applyTheme(savedTheme);
-
-    document.addEventListener("click", function (e) {
-      if (themeDropdown && !themeDropdown.contains(e.target)) {
-        themeMenu.classList.add("hidden");
-      }
-    });
+    iconContainer.innerHTML =
+      `<i data-lucide="${iconName}" class="w-4 h-4"></i>`;
 
     lucide.createIcons();
-  </script>
-  </body>
+  }
+
+  function applyTheme(theme) {
+    const html = document.documentElement;
+
+    if (theme === "dark") {
+      html.classList.add("dark");
+      themeText.textContent = "Dark";
+      updateThemeButtonIcon("moon");
+    } else {
+      html.classList.remove("dark");
+      themeText.textContent = "Light";
+      updateThemeButtonIcon("sun");
+    }
+  }
+
+  function setTheme(theme) {
+    localStorage.setItem("theme", theme);
+
+    applyTheme(theme);
+
+    themeMenu.classList.add("hidden");
+  }
+
+  function openMobileMenu() {
+    mobileSidebar.classList.remove("translate-x-full");
+    mobileOverlay.classList.remove("hidden");
+
+    document.body.classList.add("overflow-hidden");
+  }
+
+  function closeMobileMenu() {
+    mobileSidebar.classList.add("translate-x-full");
+    mobileOverlay.classList.add("hidden");
+
+    document.body.classList.remove("overflow-hidden");
+  }
+
+  function updateAuthUI() {
+    const user = localStorage.getItem("loggedInUser");
+
+    const authHTML = user
+      ? `
+        <div class="flex items-center gap-3">
+          <span class="font-medium text-green-600 dark:text-green-400">
+            ${user}
+          </span>
+
+          <button
+            onclick="logout()"
+            class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+          >
+            Logout
+          </button>
+        </div>
+      `
+      : `
+        <a href="Login.html"
+          class="bg-orange-500 text-white px-4 py-2 rounded-lg hover:bg-orange-600 transition">
+          Login
+        </a>
+      `;
+
+    document.querySelectorAll(".authSection").forEach(el => {
+      el.innerHTML = authHTML;
+    });
+  }
+
+  function logout() {
+    localStorage.removeItem("loggedInUser");
+
+    window.location.reload();
+  }
+
+  const savedTheme = localStorage.getItem("theme") || "light";
+
+  applyTheme(savedTheme);
+
+  document.addEventListener("click", function (e) {
+    if (themeDropdown && !themeDropdown.contains(e.target)) {
+      themeMenu.classList.add("hidden");
+    }
+  });
+
+  updateAuthUI();
+
+  lucide.createIcons();
+</script>
+
+</body>
 </html>
